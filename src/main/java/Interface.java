@@ -18,7 +18,7 @@ public class Interface {
     
     public void escolhaModificarGrafo(){
         Scanner leitor = new Scanner(System.in);
-        Menu.imprimirMenuPrincipal();
+        Menu.imprimirModificarGrafo();
         switch(leitor.nextInt()){
             case 1 : break;
             case 2 : break;
