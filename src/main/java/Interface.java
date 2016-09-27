@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Interface {
     
-    Grafo grafo = new Grafo();
+    Grafo[] grafos;
     
     public Interface(){
         
