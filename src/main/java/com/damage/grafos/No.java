@@ -2,17 +2,27 @@ package com.damage.grafos;
 
 
 public class No {
-    private int valor;
+    private int index;
+    private Character id;
     
-    public No(){
-        
+    public No(int index, Character id){
+        this.index = index;
+        this.id = id;
     }
 
-    public int getValor() {
-        return valor;
+    public int getIndex() {
+        return index;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public void setIndex(int valor) {
+        this.index = valor;
+    }
+
+    public Character getId() {
+        return id;
+    }
+
+    public void setId(Character id) {
+        this.id = id;
     }
 }
