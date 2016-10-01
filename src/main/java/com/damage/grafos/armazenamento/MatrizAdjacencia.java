@@ -3,7 +3,8 @@ package com.damage.grafos.armazenamento;
 public class MatrizAdjacencia {
 
  public int[][] getMatrizAdjacencia(String definicaoFormal) // nao liguem para meus erros de portuga(meu teaclado nao tema cento e a versao pt-br do windowns buga com ele, entao tudo ta sem acento), esta foi a maneira mais facil e mais rapida que pensei em fazer entao ta ai.
-  {
+ {
+     try{
    char[] defineFormal; // cria um vetor de char.
    defineFormal = definicaoFormal.toCharArray(); //O mesmo vetor de char recebe a definicao formal dividida em varias partes, infelismente nao pode haver espaco na definicao formal, caso queiram que teje espacos eu cuido disso.
    char[] vetores; // chiado outro vetor de char, porem este para receber os vetores colocados, como a matriz de adjacencia tem a mesma quantia de vetores e arestas nao tem a necessidade de colocar outro vetor de char para arestas.
@@ -26,6 +27,12 @@ public class MatrizAdjacencia {
 
    return posicoes; //retorna a matriz.
   }
+     catch(ArrayIndexOutOfBoundsException  e)
+     {
+         System.out.println("Erro caracter: " + e);
+     }
+     return null;
+ }
 
  public void print(int[][] posicoes, int repete) //como o nome diz ele print a ,matriz
   {
