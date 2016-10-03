@@ -7,8 +7,11 @@ public class Main {
         boolean running = true;
         while(running == true){
             switch(InterFace.escolhaPrincipal()){
-                case 1 : InterFace.escolhaModificarGrafo();
-                case 2 : InterFace.escolhaTesteGrafo();
+                case 0 : running = false; break;
+                case 1 : InterFace.escolhaModificarGrafo(); break;
+                case 2 : InterFace.escolhaTesteGrafo(); break;
+                case 3 : InterFace.teste(); break;
+                default: System.out.println("Escolha Invalida");
             }
         }
     }

@@ -1,29 +1,32 @@
 package com.damage.grafos;
 
 public class Aresta {
+    private String id;
     private int index;
-    private Character id;
     private No origem;
     private No destino;
     
-    public Aresta(int index, Character id){
+    public Aresta(String id){
+        this.id = id;
+    }
+    
+    public Aresta(String id, int index){
         this.id = id;
         this.index = index;
     }
-
-    public int getIndex() {
-        return index;
+    
+    public boolean isDefined(){
+        if(getOrigem() != null && getDestino() != null){
+            return true;
+        }
+        return false;
     }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public Character getId() {
+    
+    public String getId() {
         return id;
     }
 
-    public void setId(Character id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,5 +44,13 @@ public class Aresta {
 
     public void setDestino(No destino) {
         this.destino = destino;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

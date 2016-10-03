@@ -1,10 +1,11 @@
 
 import com.damage.grafos.Grafo;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Interface {
     
-    Grafo[] grafos;
+    Vector<Grafo> grafos = new Vector<Grafo>();
     
     public Interface(){
         
@@ -36,6 +37,10 @@ public class Interface {
             case 3 : break;
             case 4 : break;
         }
+    }
+    
+    public void teste(){
+        Frame.abrir(grafos);
     }
     
 }
