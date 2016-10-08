@@ -13,7 +13,7 @@ public class Grafo {
     
     public Grafo(String definicaoFormal){
         System.out.println(DefinicaoFormal.build(definicaoFormal, this).getMessage());
-        System.out.println(MatrizIncidencia.buildMatrizIncidenciaDigrafo(this));
+        System.out.println(MatrizIncidencia.buildMatrizIncidenciaDigrafo(this).getMessage());
     }
     
     public Grafo(){}

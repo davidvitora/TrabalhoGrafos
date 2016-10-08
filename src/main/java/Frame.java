@@ -40,7 +40,7 @@ public class Frame extends javax.swing.JFrame {
         mensagem = new javax.swing.JLabel();
         sucesso = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         definicaoFormal.setColumns(20);
         definicaoFormal.setRows(5);
@@ -85,7 +85,7 @@ public class Frame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addComponent(sucesso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,13 +104,15 @@ public class Frame extends javax.swing.JFrame {
         this.sucesso.setText("");
         grafo = new Grafo();
         Response response = DefinicaoFormal.build(this.definicaoFormal.getText(), grafo);
+        MatrizIncidencia.buildMatrizIncidenciaDigrafo(grafo);
         if(response.getCode() == 400){
             this.mensagem.setText(response.getMessage());
         }
         else{
             grafos.add(grafo);
-            MatrizIncidencia.buildMatrizIncidenciaDigrafo(grafo);
+            grafo.printMatrizIncidencia();
             this.sucesso.setText("Novo Grafo criado com sucesso e adicionado a lista");
+            setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

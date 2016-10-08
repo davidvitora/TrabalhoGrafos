@@ -16,6 +16,7 @@ public class DefinicaoFormal {
      * @param grafo grafo que terá os nós e arestas 
      * @return retorna a resposta da conversão com um codigo 200 = sucesso , 400 = erro*/
     public static Response build(String definicaoFormal, Grafo grafo){
+        definicaoFormal = definicaoFormal.replaceAll(" ", "");
         Aresta aresta;
         int index = 0;
         VectorNo<No> no = new VectorNo();
@@ -24,107 +25,115 @@ public class DefinicaoFormal {
         char letra;
         String id;
         Response response = new Response();
-        if(definicaoFormal.substring(0, 4).equalsIgnoreCase("G=({")){
-            letra = definicaoFormal.charAt(posAtual);
-            for(posAtual = 4; letra != '}'; posAtual++){
-                for(id = ""; definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'; posAtual++){
-                    id = id + definicaoFormal.charAt(posAtual);
-                }
-                if(id.equalsIgnoreCase("")){
-                    return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
-                }
-                if(no.findById(id) != null){
-                    return exceptionNoJaCriado(id,posAtual);
-                }
-                no.add(new No(id, index));
-                if(definicaoFormal.substring(posAtual,posAtual).equalsIgnoreCase(",") || definicaoFormal.substring(posAtual,posAtual).equalsIgnoreCase("}")){
-                    return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
-                }
+        try{
+            if(definicaoFormal.substring(0, 4).equalsIgnoreCase("G=({")){
                 letra = definicaoFormal.charAt(posAtual);
-                index++;
-            }
-            if(definicaoFormal.charAt(posAtual) != ','){
-                return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
-            }
-            posAtual += 2;
-            index = 0;
-            for(letra = ' '; letra != '}'; posAtual++ ){
-                for(id = ""; definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'; posAtual++){
-                    id = id + definicaoFormal.charAt(posAtual);
+                for(posAtual = 4; letra != '}'; posAtual++){
+                    for(id = ""; definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'; posAtual++){
+                        id = id + definicaoFormal.charAt(posAtual);
+                    }
+                    if(id.equalsIgnoreCase("")){
+                        return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
+                    }
+                    if(no.findById(id) != null){
+                        return exceptionNoJaCriado(id,posAtual);
+                    }
+                    no.add(new No(id, index));
+                    if(definicaoFormal.substring(posAtual,posAtual).equalsIgnoreCase(",") || definicaoFormal.substring(posAtual,posAtual).equalsIgnoreCase("}")){
+                        return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
+                    }
+                    letra = definicaoFormal.charAt(posAtual);
+                    index++;
                 }
-                if(id.equalsIgnoreCase("")){
-                    return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
-                }
-                if(arestas.findById(id) != null){
-                    return exceptionArestaJaCriada(id,posAtual);
-                }
-                arestas.add(new Aresta(id, index));
-                if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
+                if(definicaoFormal.charAt(posAtual) != ','){
                     return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
-                }
-                letra = definicaoFormal.charAt(posAtual);
-                index++;
-            }
-            if(definicaoFormal.charAt(posAtual) != ','){
-                return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
-            }
-            posAtual += 2;
-            for(letra = ' '; letra != '}'; posAtual++){
-                if(!definicaoFormal.substring(posAtual, posAtual + 2).equalsIgnoreCase("g(")){
-                    return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
                 }
                 posAtual += 2;
-                for(id = ""; definicaoFormal.charAt(posAtual) != ')'; posAtual++){
-                    id = id + definicaoFormal.charAt(posAtual);
+                index = 0;
+                for(letra = ' '; letra != '}'; posAtual++ ){
+                    for(id = ""; definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'; posAtual++){
+                        id = id + definicaoFormal.charAt(posAtual);
+                    }
+                    if(id.equalsIgnoreCase("")){
+                        return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
+                    }
+                    if(arestas.findById(id) != null){
+                        return exceptionArestaJaCriada(id,posAtual);
+                    }
+                    arestas.add(new Aresta(id, index));
+                    if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
+                        return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
+                    }
+                    letra = definicaoFormal.charAt(posAtual);
+                    index++;
                 }
-                if(id.equalsIgnoreCase("")){
-                    return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
-                }
-                aresta = arestas.findById(id);
-                if(aresta == null){
-                    return exceptionArestaNaoCriada(id,posAtual);
-                }
-                if(aresta.getOrigem() != null && aresta.getDestino() != null){
-                    return exceptionArestaJaDefinida(id,posAtual);
-                }
-                if(!definicaoFormal.substring(posAtual, posAtual + 3).equalsIgnoreCase(")=(")){
-                    return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
-                }
-                posAtual += 3;
-                for(id = ""; definicaoFormal.charAt(posAtual) != ','; posAtual++){
-                    id = id + definicaoFormal.charAt(posAtual);
-                }
-                if(no.findById(id) == null){
-                    return exceptionNoNaoCriado(id,posAtual);
-                }
-                aresta.setOrigem(no.findById(id));
-                if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
+                if(definicaoFormal.charAt(posAtual) != ','){
                     return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
                 }
-                posAtual++;
-                for(id = ""; definicaoFormal.charAt(posAtual) != ')'; posAtual++){
-                    id = id + definicaoFormal.charAt(posAtual);
+                posAtual += 2;
+                for(letra = ' '; letra != '}'; posAtual++){
+                    if(!definicaoFormal.substring(posAtual, posAtual + 2).equalsIgnoreCase("g(")){
+                        return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
+                    }
+                    posAtual += 2;
+                    for(id = ""; definicaoFormal.charAt(posAtual) != ')'; posAtual++){
+                        id = id + definicaoFormal.charAt(posAtual);
+                    }
+                    if(id.equalsIgnoreCase("")){
+                        return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
+                    }
+                    aresta = arestas.findById(id);
+                    if(aresta == null){
+                        return exceptionArestaNaoCriada(id,posAtual);
+                    }
+                    if(aresta.getOrigem() != null && aresta.getDestino() != null){
+                        return exceptionArestaJaDefinida(id,posAtual);
+                    }
+                    if(!definicaoFormal.substring(posAtual, posAtual + 3).equalsIgnoreCase(")=(")){
+                        return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
+                    }
+                    posAtual += 3;
+                    for(id = ""; definicaoFormal.charAt(posAtual) != ','; posAtual++){
+                        id = id + definicaoFormal.charAt(posAtual);
+                    }
+                    if(no.findById(id) == null){
+                        return exceptionNoNaoCriado(id,posAtual);
+                    }
+                    aresta.setOrigem(no.findById(id));
+                    if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
+                        return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
+                    }
+                    posAtual++;
+                    for(id = ""; definicaoFormal.charAt(posAtual) != ')'; posAtual++){
+                        id = id + definicaoFormal.charAt(posAtual);
+                    }
+                    if(no.findById(id) == null){
+                        return exceptionNoNaoCriado(id,posAtual);
+                    }
+                    aresta.setDestino(no.findById(id));
+                    posAtual++;
+                    if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
+                        return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
+                    }
+                    letra = definicaoFormal.charAt(posAtual);
                 }
-                if(no.findById(id) == null){
-                    return exceptionNoNaoCriado(id,posAtual);
+                if(definicaoFormal.charAt(posAtual) != ')'){
+                    return exceptionCNE(')', definicaoFormal.charAt(posAtual), posAtual);
                 }
-                aresta.setDestino(no.findById(id));
-                posAtual++;
-                if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
-                    return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
-                }
-                letra = definicaoFormal.charAt(posAtual);
+                grafo.setAresta(arestas);
+                grafo.setNo(no);
+                response.setCode(200);
+                response.setMessage("Matriz de incidencia criada com sucesso");
+                return response;
+            }else{
+                response.setCode(400);
+                response.setMessage("Não foi possivelvel criar grafo, verifique a definiçao");
             }
-            grafo.setAresta(arestas);
-            grafo.setNo(no);
-            response.setCode(200);
-            response.setMessage("Matriz de incidencia criada com sucesso");
-            return response;
+        }catch(Exception e){
+            response.setCode(400);
+            response.setMessage("Não foi possivelvel criar grafo, verifique a definiçao");
         }
-        response.setCode(200);
-        response.setMessage("Nos e Arestas construidos com sucesso");
-        System.out.println("Impossivel Criar Grafo");
-        return null;
+        return response;
     }
     
     public static Response exceptionCNE(char esperado, char recebido, int index){
