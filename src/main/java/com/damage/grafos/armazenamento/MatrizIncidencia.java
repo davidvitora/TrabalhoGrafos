@@ -12,7 +12,7 @@ import java.util.Vector;
 
 public class MatrizIncidencia {
     
-    public static Response buildMatrizIncidenciaDigrafo(Grafo grafo){
+    public static Response buildMatrizIncidenciaGrafo(Grafo grafo){
         Aresta aresta;
         Response response = new Response();
         int[][] matrizI;
@@ -33,6 +33,9 @@ public class MatrizIncidencia {
         for(int j = 0; j < grafo.getAresta().size(); j++){
             aresta = (Aresta) grafo.getAresta().get(j);
             matrizI[aresta.getOrigem().getIndex()][j] += 1;
+            if(aresta.getOrigem().getIndex() == aresta.getDestino().getIndex()){
+                continue;
+            }
             matrizI[aresta.getDestino().getIndex()][j] += 1;
         }
         

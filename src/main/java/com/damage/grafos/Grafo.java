@@ -6,6 +6,7 @@ import com.damage.grafos.estruturasdedados.VectorAresta;
 import com.damage.grafos.estruturasdedados.VectorNo;
 
 public class Grafo {
+    private String nome;
     private int[][] matrizI;
     private int[][] matrizA;
     private VectorNo<No> no = null;
@@ -13,20 +14,21 @@ public class Grafo {
     
     public Grafo(String definicaoFormal){
         System.out.println(DefinicaoFormal.build(definicaoFormal, this).getMessage());
-        System.out.println(MatrizIncidencia.buildMatrizIncidenciaDigrafo(this).getMessage());
+        System.out.println(MatrizIncidencia.buildMatrizIncidenciaGrafo(this).getMessage());
     }
     
     public Grafo(){}
     
-    public void printMatrizIncidencia(){
-        System.out.println("");
+    public String getMatrizIncidenciaString(){
+        String stringMatrizIncidencia = "";
         for(int i = 0; i < getNo().size(); i++){
-            System.out.print("|  ");
+            stringMatrizIncidencia +=  "| ";
             for(int j = 0; j < getAresta().size(); j++){
-                System.out.print(getMatrizI()[i][j] + "\t");
+                stringMatrizIncidencia += getMatrizI()[i][j] + " ";
             }
-            System.out.println("  |");
+            stringMatrizIncidencia += "| " + "\n";
         }
+        return stringMatrizIncidencia;
     }
 
     public VectorNo<No> getNo() {
@@ -59,6 +61,14 @@ public class Grafo {
 
     public void setMatrizA(int[][] matrizA) {
         this.matrizA = matrizA;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
 }

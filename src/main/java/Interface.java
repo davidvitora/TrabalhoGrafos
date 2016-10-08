@@ -1,4 +1,5 @@
 
+import com.damage.frames.FrameCriarGrafoDefinicaoFormal;
 import com.damage.grafos.Grafo;
 import java.util.Scanner;
 import java.util.Vector;
@@ -40,8 +41,5 @@ public class Interface {
         }
     }
     
-    public void teste(){
-        Frame.abrir(grafos);
-    }
     
 }
