@@ -1,10 +1,13 @@
 
+import com.damage.frames.FrameCriarGrafoDefinicaoFormal;
 import com.damage.grafos.Grafo;
 import java.util.Scanner;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 
 public class Interface {
     
-    Grafo[] grafos;
+    Vector<Grafo> grafos = new Vector<Grafo>();
     
     public Interface(){
         
@@ -37,5 +40,6 @@ public class Interface {
             case 4 : break;
         }
     }
+    
     
 }
