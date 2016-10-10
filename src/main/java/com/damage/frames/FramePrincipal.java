@@ -1,6 +1,7 @@
 package com.damage.frames;
 
 import com.damage.grafos.Grafo;
+import com.damage.grafos.armazenamento.Definicoes;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.util.Arrays;
 import java.util.Vector;
@@ -275,6 +276,10 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void TabelaGrafosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaGrafosMouseClicked
       this.textoMatrizIncidencia.setText(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()).getMatrizIncidenciaString());
+      this.labelInformacaoCompleto.setText(Definicoes.completo(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
+      this.labelInformacaoSimples.setText(Definicoes.simples(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
+      this.labelInformacaoConexo.setText(Definicoes.conexo(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
+      this.labelInformacaoPlanar.setText(Definicoes.planar(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
     }//GEN-LAST:event_TabelaGrafosMouseClicked
 
     private void botaoMenuCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuCriarGrafoActionPerformed
