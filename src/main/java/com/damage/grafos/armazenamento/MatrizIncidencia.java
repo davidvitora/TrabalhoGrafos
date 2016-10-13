@@ -32,11 +32,11 @@ public class MatrizIncidencia {
         
         for(int j = 0; j < grafo.getAresta().size(); j++){
             aresta = (Aresta) grafo.getAresta().get(j);
-            matrizI[aresta.getOrigem().getIndex()][j] += 1;
-            if(aresta.getOrigem().getIndex() == aresta.getDestino().getIndex()){
+            matrizI[aresta.getNo1().getIndex()][j] += 1;
+            if(aresta.getNo1().getIndex() == aresta.getNo2().getIndex()){
                 continue;
             }
-            matrizI[aresta.getDestino().getIndex()][j] += 1;
+            matrizI[aresta.getNo2().getIndex()][j] += 1;
         }
         
         response.setCode(200);

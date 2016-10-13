@@ -9,6 +9,9 @@ public class No {
         this.id = id;
     }
     
+    public No(){
+    }
+    
     public No(String id, int index){
         this.id = id;
         this.index = index;

@@ -17,7 +17,10 @@ public class Grafo {
         System.out.println(MatrizIncidencia.buildMatrizIncidenciaGrafo(this).getMessage());
     }
     
-    public Grafo(){}
+    public Grafo(){
+        no = new VectorNo<No>();
+        aresta = new VectorAresta<Aresta>();
+    }
     
     public String getMatrizIncidenciaString(){
         String stringMatrizIncidencia = "";

@@ -86,21 +86,21 @@ public class DefinicaoFormal {
                     if(aresta == null){
                         return exceptionArestaNaoCriada(id,posAtual);
                     }
-                    if(aresta.getOrigem() != null && aresta.getDestino() != null){
+                    if(aresta.getNo1() != null && aresta.getNo2() != null){
                         return exceptionArestaJaDefinida(id,posAtual);
                     }
                     if(!definicaoFormal.substring(posAtual, posAtual + 3).equalsIgnoreCase(")=(")){
                         return exceptionDNE(" g(NOMEDAARESTA)=(NÓ,NÓ) ", posAtual);
                     }
                     posAtual += 3;
-                    for(id = ""; definicaoFormal.charAt(posAtual) != ','; posAtual++){
+                    for(id = ""; definicaoFormal.charAt(posAtual) != '-'; posAtual++){
                         id = id + definicaoFormal.charAt(posAtual);
                     }
                     if(no.findById(id) == null){
                         return exceptionNoNaoCriado(id,posAtual);
                     }
-                    aresta.setOrigem(no.findById(id));
-                    if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
+                    aresta.setNo1(no.findById(id));
+                    if(definicaoFormal.charAt(posAtual) != '-'){
                         return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
                     }
                     posAtual++;
@@ -110,7 +110,7 @@ public class DefinicaoFormal {
                     if(no.findById(id) == null){
                         return exceptionNoNaoCriado(id,posAtual);
                     }
-                    aresta.setDestino(no.findById(id));
+                    aresta.setNo2(no.findById(id));
                     posAtual++;
                     if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
                         return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
