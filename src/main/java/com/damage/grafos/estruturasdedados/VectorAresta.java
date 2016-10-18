@@ -16,6 +16,10 @@ public class VectorAresta<No> extends Vector{
         return null;
     }
     
+    public Aresta getAresta(int index){
+        return (Aresta) this.get(index);
+    }
+    
     public int findIndexById(String search){
         com.damage.grafos.Aresta aresta;
         for(int i = 0; i < this.size(); i++){
