@@ -15,6 +15,10 @@ public class VectorNo<No> extends Vector{
         return null;
     }
     
+    public No getNo(int index){
+        return (No) this.get(index);
+    }
+    
     public int findIndexById(String search){
         com.damage.grafos.No no;
         for(int i = 0; i < this.size(); i++){

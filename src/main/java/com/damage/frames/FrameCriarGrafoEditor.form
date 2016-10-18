@@ -171,11 +171,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarNoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botaoExcluirNo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirNoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -279,6 +285,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Criar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCriarArestaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botaoEditarAresta">
           <Properties>
@@ -289,6 +298,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirArestaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

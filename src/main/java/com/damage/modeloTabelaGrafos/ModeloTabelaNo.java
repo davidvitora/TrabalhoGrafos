@@ -6,6 +6,7 @@
 package com.damage.modeloTabelaGrafos;
 
 import com.damage.grafos.No;
+import com.damage.grafos.estruturasdedados.VectorNo;
 import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,10 +16,10 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTabelaNo extends AbstractTableModel{
     
-    private Vector<No> nos;
+    private VectorNo<No> nos;
     String colunas[] = {"id"};
     
-    public ModeloTabelaNo(Vector<No> nos){
+    public ModeloTabelaNo(VectorNo<No> nos){
         this.nos = nos;
     }
 
@@ -34,7 +35,7 @@ public class ModeloTabelaNo extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-                 No no = nos.get(rowIndex);
+                 No no = (No) nos.get(rowIndex);
          switch( columnIndex ) {
              case 0: return no.getId();
          }
@@ -47,11 +48,11 @@ public class ModeloTabelaNo extends AbstractTableModel{
         super.fireTableDataChanged(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Vector<No> getNos() {
+    public VectorNo<No> getNos() {
         return nos;
     }
 
-    public void setNos(Vector<No> nos) {
+    public void setNos(VectorNo<No> nos) {
         this.nos = nos;
     }
 

@@ -10,6 +10,9 @@ public class Aresta {
         this.id = id;
     }
     
+    public Aresta(){
+    }
+    
     public Aresta(String id, int index){
         this.id = id;
         this.index = index;

@@ -6,10 +6,9 @@
 package com.damage.modeloTabelaGrafos;
 
 import com.damage.grafos.Aresta;
-import com.damage.grafos.Grafo;
+import com.damage.grafos.estruturasdedados.VectorAresta;
 import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableColumnModel;
 
 /**
  *
@@ -17,10 +16,10 @@ import javax.swing.table.DefaultTableColumnModel;
  */
 public class ModeloTabelaAresta extends AbstractTableModel{
     
-    private Vector<Aresta> arestas;
+    private VectorAresta<Aresta> arestas;
     String colunas[] = {"Id","Nó","Nó"};
     
-    public ModeloTabelaAresta(Vector<Aresta> arestas){
+    public ModeloTabelaAresta(VectorAresta<Aresta> arestas){
         this.arestas = arestas;
     }
 
@@ -36,7 +35,7 @@ public class ModeloTabelaAresta extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-                 Aresta aresta = getArestas().get(rowIndex);
+                 Aresta aresta = (Aresta) getArestas().get(rowIndex);
          switch( columnIndex ) {
              case 0: return aresta.getId();
              case 1: return aresta.getNo1().getId();
@@ -51,11 +50,11 @@ public class ModeloTabelaAresta extends AbstractTableModel{
         super.fireTableDataChanged(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Vector<Aresta> getArestas() {
+    public VectorAresta<Aresta> getArestas() {
         return arestas;
     }
 
-    public void setArestas(Vector<Aresta> arestas) {
+    public void setArestas(VectorAresta<Aresta> arestas) {
         this.arestas = arestas;
     }
 

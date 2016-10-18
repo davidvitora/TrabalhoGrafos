@@ -14,17 +14,19 @@ import javax.swing.JOptionPane;
  *
  * @author David .V
  */
-public class FrameCriarNo extends javax.swing.JFrame {
+public class FrameEditarNo extends javax.swing.JFrame {
 
-    No no = new No();
+    No no;
     private ModeloTabelaNo nos;
     
-    public FrameCriarNo(ModeloTabelaNo nos) {
+    public FrameEditarNo(ModeloTabelaNo nos, No no) {
+        this.no = no;
         this.setNos(nos);
+        this.textoNomeNo.setText(no.getId());
         initComponents();
     }
     
-    public FrameCriarNo() {
+    public FrameEditarNo() {
         initComponents();
     }
 
@@ -41,9 +43,9 @@ public class FrameCriarNo extends javax.swing.JFrame {
         labelNovoNo = new javax.swing.JLabel();
         textoNomeNo = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Criar");
+        jButton1.setText("Ok");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -88,13 +90,15 @@ public class FrameCriarNo extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(this.textoNomeNo.getText().length() < 1){
             JOptionPane.showMessageDialog(null, "Insira um nome de no minio 1 caractere para o Nó", "Insira um nome", 1);
-        }else if(this.nos.getNos().findIndexById(this.textoNomeNo.getText()) != -1){
-            JOptionPane.showMessageDialog(null, "Já existe um nó com o nome informado", "Nó já criado", 1);
+        }else if(this.nos.getNos().findById(this.textoNomeNo.getText()) != null){
+            if(this.nos.getNos().findById(this.textoNomeNo.getText()).equals(no)){
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Já existe um nó com o nome informado", "Nó já criado", 1);
+            }
         }
         else{
             this.no.setId(this.textoNomeNo.getText());
-            this.no.setIndex(this.getNos().getNos().size());
-            this.getNos().getNos().add(no);
             this.getNos().fireTableDataChanged();
             this.dispose();
         }
@@ -117,26 +121,27 @@ public class FrameCriarNo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarNo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameCriarNo().setVisible(true);
+                new FrameEditarNo().setVisible(true);
             }
         });
     }
     
-    public static void abrir(ModeloTabelaNo nos){
-        new FrameCriarNo(nos).setVisible(true);
+    public static void abrir(ModeloTabelaNo nos, No no){
+        new FrameEditarNo(nos, no).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

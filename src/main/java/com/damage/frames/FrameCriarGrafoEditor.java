@@ -9,6 +9,7 @@ import com.damage.grafos.Grafo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -90,8 +91,18 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         });
 
         botaoEditarNo.setText("Editar");
+        botaoEditarNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarNoActionPerformed(evt);
+            }
+        });
 
         botaoExcluirNo.setText("Excluir");
+        botaoExcluirNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirNoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -172,10 +183,20 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tabelaArestas);
 
         botaoCriarAresta.setText("Criar");
+        botaoCriarAresta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCriarArestaActionPerformed(evt);
+            }
+        });
 
         botaoEditarAresta.setText("Editar");
 
         botaoExcluirAresta.setText("Excluir");
+        botaoExcluirAresta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirArestaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,12 +265,63 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarGrafoActionPerformed
-        
+        if(this.textoNome.getText().length() < 1){
+            JOptionPane.showMessageDialog(null, "Insira um nome de no minimo 1 caractere para o grafo", "Insira um nome", 1);
+        }else if(this.grafo.getNo().size() < 1){
+            JOptionPane.showMessageDialog(null, "Crie pelo menos um nó para o grafo", "Crie um nó", 1);
+        }
+        else{
+            grafo.setNome(this.textoNome.getText());
+            grafos.getGrafos().add(grafo);
+            grafos.fireTableDataChanged();
+            JOptionPane.showMessageDialog(null, "Grafo criado comsucesso", "Sucesso", 1);
+            this.dispose();
+        }
     }//GEN-LAST:event_botaoCriarGrafoActionPerformed
 
     private void botaoCriarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarNoActionPerformed
         FrameCriarNo.abrir((ModeloTabelaNo) tabelaNos.getModel());
     }//GEN-LAST:event_botaoCriarNoActionPerformed
+
+    private void botaoCriarArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarArestaActionPerformed
+        if(this.tabelaNos.getModel().getRowCount() < 1){
+            JOptionPane.showMessageDialog(null, "Crie pelo menos um nó para criar arestas", "Crie um nó", 1);
+        }
+        else{
+            FrameCriarAresta.abrir((ModeloTabelaAresta)this.tabelaArestas.getModel(),(ModeloTabelaNo) this.tabelaNos.getModel());
+        }
+        
+    }//GEN-LAST:event_botaoCriarArestaActionPerformed
+
+    private void botaoExcluirNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirNoActionPerformed
+        ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
+        if(this.tabelaNos.getSelectedRow() == -1){
+             JOptionPane.showMessageDialog(null, "Selecione um nó para realizar a Exclusão", "Selecione o nó", 1);
+            return;
+        }
+        this.grafo.getNo().remove(this.tabelaNos.getSelectedRow());
+        this.grafos.fireTableDataChanged();
+        modeloNo.fireTableDataChanged();
+    }//GEN-LAST:event_botaoExcluirNoActionPerformed
+
+    private void botaoExcluirArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirArestaActionPerformed
+        ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
+        if(this.tabelaArestas.getSelectedRow() == -1){
+             JOptionPane.showMessageDialog(null, "Selecione uma aresta para realizar a Exclusão", "Selecione a Aresta", 1);
+            return;
+        }
+        this.grafo.getAresta().remove(this.tabelaArestas.getSelectedRow());
+        modeloAresta.fireTableDataChanged();
+    }//GEN-LAST:event_botaoExcluirArestaActionPerformed
+
+    private void botaoEditarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarNoActionPerformed
+        ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
+        if(this.tabelaNos.getSelectedRow() == -1){
+             JOptionPane.showMessageDialog(null, "Selecione um no para realizar a edição", "Selecione um nó", 1);
+            return;
+        }
+        FrameEditarNo.abrir(modeloNo, modeloNo.getNos().getNo(tabelaNos.getSelectedRow()));
+    }//GEN-LAST:event_botaoEditarNoActionPerformed
 
     /**
      * @param args the command line arguments
