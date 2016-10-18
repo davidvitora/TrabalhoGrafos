@@ -110,7 +110,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="G=({a,b,c},{1,2,3,4},{g(1)=(a,b),g(2)=(b,c),g(3)=(a,c),g(4)=(c,b)})"/>
+                <Property name="text" type="java.lang.String" value="G=({a,b,c},{1,2,3,4},{g(1)=(a-b),g(2)=(b-c),g(3)=(a-c),g(4)=(c-b)})"/>
               </Properties>
             </Component>
           </SubComponents>
