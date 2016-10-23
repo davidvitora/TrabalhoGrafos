@@ -11,6 +11,7 @@ public class Grafo {
     private int[][] matrizA;
     private VectorNo<No> no = null;
     private VectorAresta<Aresta> aresta = null;
+    private String definicaoFormal;
     
     public Grafo(String definicaoFormal){
         System.out.println(DefinicaoFormal.build(definicaoFormal, this).getMessage());
@@ -72,6 +73,14 @@ public class Grafo {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDefinicaoFormal() {
+        return definicaoFormal;
+    }
+
+    public void setDefinicaoFormal(String definicaoFormal) {
+        this.definicaoFormal = definicaoFormal;
     }
     
 }

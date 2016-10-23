@@ -1,14 +1,27 @@
 package com.damage.frames;
 
+import com.damage.Response.Response;
 import com.damage.grafos.Grafo;
+import com.damage.grafos.armazenamento.DefinicaoFormal;
 import com.damage.grafos.armazenamento.Definicoes;
+import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class FramePrincipal extends javax.swing.JFrame {
+public class FramePrincipal extends JFrame {
 
     /**Declaração das variaveis personalizadas*/
     //Tabela de grafos
@@ -22,6 +35,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public FramePrincipal() {
         grafos = new ModeloTabelaGrafos();
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -33,6 +47,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         labelMatrizIncidência = new javax.swing.JLabel();
         labelMatrizAdjacência = new javax.swing.JLabel();
@@ -55,13 +70,23 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaGrafos = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuGrafosNovo = new javax.swing.JMenu();
+        menuNovo = new javax.swing.JMenuItem();
+        menuAbrirGrafos = new javax.swing.JMenuItem();
+        menuIGrafosSalvar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuGrafoDesenhar = new javax.swing.JMenuItem();
+        menuAjuda = new javax.swing.JMenu();
+        menuSobre = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Forker");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(50, 50));
         setName("framePrincipal"); // NOI18N
-        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações"));
 
@@ -101,7 +126,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +178,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPlanar)
                     .addComponent(labelInformacaoPlanar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
@@ -184,7 +209,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                     .addComponent(botaoMenuCriarGrafo)
                     .addComponent(botaoMenuModificarGrafo)
                     .addComponent(botaoMenuExcluirGrafo))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +244,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        TabelaGrafos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        TabelaGrafos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         TabelaGrafos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TabelaGrafos.setMinimumSize(new java.awt.Dimension(45, 0));
         this.TabelaGrafos.setModel(this.grafos);
@@ -237,12 +262,56 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        menuGrafosNovo.setText("Arquivo");
+
+        menuNovo.setText("Novo");
+        menuNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNovoActionPerformed(evt);
+            }
+        });
+        menuGrafosNovo.add(menuNovo);
+
+        menuAbrirGrafos.setText("Abrir");
+        menuAbrirGrafos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAbrirGrafosActionPerformed(evt);
+            }
+        });
+        menuGrafosNovo.add(menuAbrirGrafos);
+
+        menuIGrafosSalvar.setText("Salvar");
+        menuIGrafosSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIGrafosSalvarActionPerformed(evt);
+            }
+        });
+        menuGrafosNovo.add(menuIGrafosSalvar);
+
+        jMenuBar1.add(menuGrafosNovo);
+
+        jMenu2.setText("Grafico");
+
+        menuGrafoDesenhar.setText("Desenhar");
+        jMenu2.add(menuGrafoDesenhar);
+
+        jMenuBar1.add(jMenu2);
+
+        menuAjuda.setText("Ajuda");
+
+        menuSobre.setText("Sobre");
+        menuAjuda.add(menuSobre);
+
+        jMenuBar1.add(menuAjuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,11 +319,11 @@ public class FramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -262,16 +331,16 @@ public class FramePrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        pack();
-        setLocationRelativeTo(null);
+        setSize(new java.awt.Dimension(866, 598));
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaGrafosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaGrafosMouseClicked
@@ -295,6 +364,76 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.grafos.fireTableDataChanged();
         this.resetarInformacoes();
     }//GEN-LAST:event_botaoMenuExcluirGrafoActionPerformed
+
+    private void menuAbrirGrafosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbrirGrafosActionPerformed
+        /*Vetor de grafos e grafo temporario*/
+        Vector<Grafo> vetorGrafos = new Vector<Grafo>();
+        Grafo grafo;
+        /*--*/
+        int contLine = 0;
+        JFileChooser arquivo = new JFileChooser();
+        arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        arquivo.showOpenDialog(jPanel1);
+        Response resposta;
+        try {
+            FileReader arq = new FileReader(arquivo.getSelectedFile().getPath());
+            BufferedReader lerArq = new BufferedReader(arq);
+
+            String linha = lerArq.readLine(); 
+            while (linha != null) {
+              grafo = new Grafo();
+              resposta = DefinicaoFormal.build(linha.substring(0 , linha.indexOf("|")), grafo);
+              if(resposta.getCode() == 400){
+                 JOptionPane.showMessageDialog(null, resposta.getMessage() + "\nLinha do erro: " + contLine, "Erro ao ler definição formal", 1);
+                 return;
+              }
+              MatrizIncidencia.buildMatrizIncidenciaGrafo(grafo);
+              if(linha.substring(linha.indexOf("|") + 1).replace("|", "").length() < 4){
+                 JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 4 caracteres", "Erro ao ler definição formal", 1); 
+              }
+              grafo.setNome(linha.substring(linha.indexOf("|") + 1).replace("|", ""));
+              vetorGrafos.add(grafo);
+              linha = lerArq.readLine();
+              contLine++;
+            }
+            grafos.setGrafos(vetorGrafos);
+            grafos.fireTableDataChanged();
+            arq.close();
+          } catch (IOException e) {
+              System.err.printf("Erro na abertura do arquivo: %s.\n",
+                e.getMessage());
+          }
+        
+    }//GEN-LAST:event_menuAbrirGrafosActionPerformed
+
+    private void menuIGrafosSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIGrafosSalvarActionPerformed
+        JFileChooser arquivo = new JFileChooser();
+        arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        arquivo.showSaveDialog(jPanel1);
+        FileWriter arq = null;
+        try {
+            arq = new FileWriter(arquivo.getSelectedFile().getPath() + ".txt");
+            PrintWriter gravarArq = new PrintWriter(arq);
+            for(Grafo grafo : grafos.getGrafos()){
+                gravarArq.print(grafo.getDefinicaoFormal());
+                gravarArq.print("|" + grafo.getNome());
+                gravarArq.println("|");
+            }
+            arq.close();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(labelCompleto, "Erro ao salvar o arquivo", "Erro", 0);
+            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }//GEN-LAST:event_menuIGrafosSalvarActionPerformed
+
+    private void menuNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoActionPerformed
+        int escolha = JOptionPane.showConfirmDialog(labelCompleto, "Deseja criar uma nova lista de grafos?", "Novos Grafos", 1);
+        if(escolha == 0){
+            grafos.setGrafos(new Vector<Grafo>());
+            grafos.fireTableDataChanged();
+        }
+        this.resetarInformacoes();
+    }//GEN-LAST:event_menuNovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,6 +471,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botaoMenuCriarGrafo;
     private javax.swing.JButton botaoMenuExcluirGrafo;
     private javax.swing.JButton botaoMenuModificarGrafo;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -348,6 +490,13 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel labelMatrizIncidência;
     private javax.swing.JLabel labelPlanar;
     private javax.swing.JLabel labelSimples;
+    private javax.swing.JMenuItem menuAbrirGrafos;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenuItem menuGrafoDesenhar;
+    private javax.swing.JMenu menuGrafosNovo;
+    private javax.swing.JMenuItem menuIGrafosSalvar;
+    private javax.swing.JMenuItem menuNovo;
+    private javax.swing.JMenuItem menuSobre;
     private javax.swing.JTextArea textoMatrizAdjacencia;
     private javax.swing.JTextArea textoMatrizIncidencia;
     // End of variables declaration//GEN-END:variables

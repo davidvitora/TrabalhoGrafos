@@ -120,6 +120,7 @@ public class DefinicaoFormal {
                 if(definicaoFormal.charAt(posAtual) != ')'){
                     return exceptionCNE(')', definicaoFormal.charAt(posAtual), posAtual);
                 }
+                grafo.setDefinicaoFormal(definicaoFormal);
                 grafo.setAresta(arestas);
                 grafo.setNo(no);
                 response.setCode(200);
