@@ -17,12 +17,33 @@ import com.damage.grafos.estruturasdedados.VectorNo;
 public class Definicoes {
     
     public static String completo(Grafo grafo){
-        boolean simples;
+        No no;
+        VectorNo<No> nos;
+        
         if(!simples(grafo).equalsIgnoreCase("Sim")){
             return "Não";
         }
-
-        return "Sim";
+        for(int i = 0; i < grafo.getNo().size(); i++){
+            nos = new VectorNo();
+            no  = grafo.getNo().getNo(i);
+            for(int j = 0; j < grafo.getAresta().size(); j++){
+                   if(grafo.getAresta().getAresta(j).getNo1().equals(no)){
+                       nos.add(grafo.getAresta().getAresta(j).getNo2());
+                   }else if(grafo.getAresta().getAresta(j).getNo2().equals(no)){
+                       nos.add(grafo.getAresta().getAresta(j).getNo1());
+                   }
+            }
+            for(int j = 0; j < grafo.getNo().size(); j++){
+                if(j == i){
+                    continue;
+                }
+                if(!nos.contains(grafo.getNo().getNo(j))){
+                    return "Não";
+                }
+            }
+        }
+       
+    return "Sim";
     }
     
     public static String simples(Grafo grafo){
