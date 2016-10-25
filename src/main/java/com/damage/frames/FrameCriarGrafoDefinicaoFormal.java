@@ -61,7 +61,7 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
 
         textoDefinicaoFormal.setColumns(20);
         textoDefinicaoFormal.setRows(5);
-        textoDefinicaoFormal.setText("G=({a,b,c},{1,2,3,4},{g(1)=(a-b),g(2)=(b-c),g(3)=(a-c),g(4)=(c-b)})");
+        textoDefinicaoFormal.setText("G=({a,b,c,d,e},{1,2,3,4,5,6,7,8},{g(1)=(a-d),g(2)=(a-b),g(3)=(a-c),g(4)=(a-e),g(5)=(b-d),g(6)=(c-d),g(7)=(d-e),g(8)=(b-e)})");
         jScrollPane1.setViewportView(textoDefinicaoFormal);
 
         mensagem.setForeground(new java.awt.Color(255, 0, 0));

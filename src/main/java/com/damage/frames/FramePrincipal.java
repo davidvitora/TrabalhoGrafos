@@ -344,11 +344,12 @@ public class FramePrincipal extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaGrafosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaGrafosMouseClicked
+      Definicoes definicoes = new Definicoes();
       this.textoMatrizIncidencia.setText(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()).getMatrizIncidenciaString());
       this.labelInformacaoCompleto.setText(Definicoes.completo(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
       this.labelInformacaoSimples.setText(Definicoes.simples(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
       this.labelInformacaoConexo.setText(Definicoes.conexo(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
-      this.labelInformacaoPlanar.setText(Definicoes.planar(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
+      this.labelInformacaoPlanar.setText(definicoes.planar(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
     }//GEN-LAST:event_TabelaGrafosMouseClicked
 
     private void botaoMenuCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuCriarGrafoActionPerformed

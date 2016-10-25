@@ -1,9 +1,14 @@
 package com.damage.grafos;
 
+import java.util.Vector;
+import com.damage.grafos.estruturasdedados.VectorAresta;
+
 
 public class No {
     private String id;
     private int index;
+    private VectorAresta<Aresta> arestas = new VectorAresta();
+    private boolean visitado = false;
     
     public No(String id){
         this.id = id;
@@ -31,5 +36,20 @@ public class No {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public VectorAresta<Aresta> getArestas() {
+        return arestas;
+    }
+
+    public void setArestas(VectorAresta<Aresta> arestas) {
+        this.arestas = arestas;
+    }
+    
+    public void setVisitado(boolean visitado){
+        this.visitado = visitado;
+    }
+    public boolean getVisitado(){
+        return visitado;
     }
 }

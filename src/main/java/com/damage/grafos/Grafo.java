@@ -83,4 +83,13 @@ public class Grafo {
         this.definicaoFormal = definicaoFormal;
     }
     
+    public void resetaVisitas(){
+    for (int i = 0; i < no.size(); i++){
+        no.getNo(i).setVisitado(false);
+    }
+    for (int i = 0; i < aresta.size(); i++){
+        aresta.getAresta(i).setVisitado(false);
+    }    
+    }
+    
 }
