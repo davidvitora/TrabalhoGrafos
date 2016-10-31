@@ -71,6 +71,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textoNomeNo">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.textoNomeNo.setText(no.getId());"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

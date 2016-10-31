@@ -4,6 +4,7 @@ import com.damage.Response.Response;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.armazenamento.DefinicaoFormal;
 import com.damage.grafos.armazenamento.Definicoes;
+import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.io.BufferedReader;
@@ -51,6 +52,21 @@ public class FramePrincipal extends JFrame {
         jPanel1 = new javax.swing.JPanel();
         labelMatrizIncidência = new javax.swing.JLabel();
         labelMatrizAdjacência = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textoMatrizIncidencia = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textoMatrizAdjacencia = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textoListadeAdjacencia = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        botaoMenuCriarGrafo = new javax.swing.JButton();
+        botaoMenuModificarGrafo = new javax.swing.JButton();
+        botaoMenuExcluirGrafo = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TabelaGrafos = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
         labelSimples = new javax.swing.JLabel();
         labelCompleto = new javax.swing.JLabel();
         labelConexo = new javax.swing.JLabel();
@@ -59,17 +75,12 @@ public class FramePrincipal extends JFrame {
         labelInformacaoCompleto = new javax.swing.JLabel();
         labelInformacaoConexo = new javax.swing.JLabel();
         labelInformacaoPlanar = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textoMatrizIncidencia = new javax.swing.JTextArea();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textoMatrizAdjacencia = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
-        botaoMenuCriarGrafo = new javax.swing.JButton();
-        botaoMenuModificarGrafo = new javax.swing.JButton();
-        botaoMenuExcluirGrafo = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaGrafos = new javax.swing.JTable();
+        labelNomeGrafo = new javax.swing.JLabel();
+        textoNomeGrafo = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        textoDefinicaoFormal = new javax.swing.JTextArea();
+        jSeparator1 = new javax.swing.JSeparator();
+        labelDefinicaoFormal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuGrafosNovo = new javax.swing.JMenu();
         menuNovo = new javax.swing.JMenuItem();
@@ -94,22 +105,6 @@ public class FramePrincipal extends JFrame {
 
         labelMatrizAdjacência.setText("Matriz Adjacência");
 
-        labelSimples.setText("Simples:");
-
-        labelCompleto.setText("Completo:");
-
-        labelConexo.setText("Conexo:");
-
-        labelPlanar.setText("Planar:");
-
-        labelInformacaoSimples.setText("Não");
-
-        labelInformacaoCompleto.setText("Não");
-
-        labelInformacaoConexo.setText("Não");
-
-        labelInformacaoPlanar.setText("Não");
-
         textoMatrizIncidencia.setEditable(false);
         textoMatrizIncidencia.setColumns(20);
         textoMatrizIncidencia.setRows(5);
@@ -119,35 +114,29 @@ public class FramePrincipal extends JFrame {
         textoMatrizAdjacencia.setRows(5);
         jScrollPane3.setViewportView(textoMatrizAdjacencia);
 
+        textoListadeAdjacencia.setColumns(20);
+        textoListadeAdjacencia.setRows(5);
+        jScrollPane4.setViewportView(textoListadeAdjacencia);
+
+        jLabel1.setText("Lista de Adjacencia");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                        .addGap(2, 2, 2))
                     .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelMatrizIncidência)
-                            .addComponent(labelMatrizAdjacência)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelSimples)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelInformacaoSimples))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelConexo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelInformacaoConexo))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelPlanar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelInformacaoPlanar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCompleto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelInformacaoCompleto)))
+                            .addComponent(jLabel1)
+                            .addComponent(labelMatrizAdjacência))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -157,28 +146,16 @@ public class FramePrincipal extends JFrame {
                 .addContainerGap()
                 .addComponent(labelMatrizIncidência)
                 .addGap(7, 7, 7)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelMatrizAdjacência)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSimples)
-                    .addComponent(labelInformacaoSimples))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCompleto)
-                    .addComponent(labelInformacaoCompleto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelConexo)
-                    .addComponent(labelInformacaoConexo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPlanar)
-                    .addComponent(labelInformacaoPlanar))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(jScrollPane4)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
@@ -191,6 +168,11 @@ public class FramePrincipal extends JFrame {
         });
 
         botaoMenuModificarGrafo.setText("Modificar Grafo");
+        botaoMenuModificarGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMenuModificarGrafoActionPerformed(evt);
+            }
+        });
 
         botaoMenuExcluirGrafo.setText("Excluir Grafo");
         botaoMenuExcluirGrafo.addActionListener(new java.awt.event.ActionListener() {
@@ -204,12 +186,12 @@ public class FramePrincipal extends JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoMenuCriarGrafo)
                     .addComponent(botaoMenuModificarGrafo)
                     .addComponent(botaoMenuExcluirGrafo))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,11 +244,104 @@ public class FramePrincipal extends JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Grafo"));
+
+        labelSimples.setText("Simples:");
+
+        labelCompleto.setText("Completo:");
+
+        labelConexo.setText("Conexo:");
+
+        labelPlanar.setText("Planar:");
+
+        labelInformacaoSimples.setText("Não");
+
+        labelInformacaoCompleto.setText("Não");
+
+        labelInformacaoConexo.setText("Não");
+
+        labelInformacaoPlanar.setText("Não");
+
+        labelNomeGrafo.setText("Nome:");
+
+        textoDefinicaoFormal.setColumns(20);
+        textoDefinicaoFormal.setRows(5);
+        jScrollPane5.setViewportView(textoDefinicaoFormal);
+
+        labelDefinicaoFormal.setText("Definição Formal");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(labelNomeGrafo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoNomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(labelSimples)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelInformacaoSimples))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(labelConexo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelInformacaoConexo))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(labelCompleto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelInformacaoCompleto))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(labelPlanar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelInformacaoPlanar))
+                            .addComponent(labelDefinicaoFormal))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelNomeGrafo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textoNomeGrafo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSimples)
+                    .addComponent(labelInformacaoSimples))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCompleto)
+                    .addComponent(labelInformacaoCompleto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelConexo)
+                    .addComponent(labelInformacaoConexo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPlanar)
+                    .addComponent(labelInformacaoPlanar))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(labelDefinicaoFormal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuGrafosNovo.setText("Arquivo");
@@ -319,9 +394,12 @@ public class FramePrincipal extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -331,25 +409,31 @@ public class FramePrincipal extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(866, 598));
+        setSize(new java.awt.Dimension(1063, 794));
     }// </editor-fold>//GEN-END:initComponents
 
     private void TabelaGrafosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaGrafosMouseClicked
       Definicoes definicoes = new Definicoes();
-      this.textoMatrizIncidencia.setText(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()).getMatrizIncidenciaString());
-      this.labelInformacaoCompleto.setText(Definicoes.completo(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
-      this.labelInformacaoSimples.setText(Definicoes.simples(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
-      this.labelInformacaoConexo.setText(Definicoes.conexo(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
-      this.labelInformacaoPlanar.setText(definicoes.planar(this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow())));
+      Grafo grafo = this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow());
+      this.textoMatrizIncidencia.setText(grafo.getMatrizIncidenciaString());
+      this.textoListadeAdjacencia.setText(grafo.getListaAdjacencia());
+      this.labelInformacaoCompleto.setText(grafo.getCompleto());
+      this.labelInformacaoSimples.setText(grafo.getSimples());
+      this.labelInformacaoConexo.setText(grafo.getConexo());
+      this.labelInformacaoPlanar.setText(grafo.getPlanar());
+      this.textoDefinicaoFormal.setText(grafo.getDefinicaoFormal());
+      this.textoNomeGrafo.setText(grafo.getNome());
     }//GEN-LAST:event_TabelaGrafosMouseClicked
 
     private void botaoMenuCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuCriarGrafoActionPerformed
@@ -388,7 +472,7 @@ public class FramePrincipal extends JFrame {
                  JOptionPane.showMessageDialog(null, resposta.getMessage() + "\nLinha do erro: " + contLine, "Erro ao ler definição formal", 1);
                  return;
               }
-              MatrizIncidencia.buildMatrizIncidenciaGrafo(grafo);
+              grafo.update();
               if(linha.substring(linha.indexOf("|") + 1).replace("|", "").length() < 4){
                  JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 4 caracteres", "Erro ao ler definição formal", 1); 
               }
@@ -397,6 +481,7 @@ public class FramePrincipal extends JFrame {
               linha = lerArq.readLine();
               contLine++;
             }
+            resetarInformacoes();
             grafos.setGrafos(vetorGrafos);
             grafos.fireTableDataChanged();
             arq.close();
@@ -436,6 +521,14 @@ public class FramePrincipal extends JFrame {
         this.resetarInformacoes();
     }//GEN-LAST:event_menuNovoActionPerformed
 
+    private void botaoMenuModificarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuModificarGrafoActionPerformed
+        if(this.TabelaGrafos.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(labelCompleto, "Selecione um grafo para Editar");
+            return;
+        }
+        FrameEditarGrafo.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()), grafos);
+    }//GEN-LAST:event_botaoMenuModificarGrafoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -465,6 +558,9 @@ public class FramePrincipal extends JFrame {
         this.labelInformacaoConexo.setText("Não");
         this.labelInformacaoSimples.setText("Não");
         this.labelInformacaoPlanar.setText("Não");
+        this.textoListadeAdjacencia.setText("");
+        this.textoDefinicaoFormal.setText("");
+        this.textoNomeGrafo.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -472,23 +568,30 @@ public class FramePrincipal extends JFrame {
     private javax.swing.JButton botaoMenuCriarGrafo;
     private javax.swing.JButton botaoMenuExcluirGrafo;
     private javax.swing.JButton botaoMenuModificarGrafo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelCompleto;
     private javax.swing.JLabel labelConexo;
+    private javax.swing.JLabel labelDefinicaoFormal;
     private javax.swing.JLabel labelInformacaoCompleto;
     private javax.swing.JLabel labelInformacaoConexo;
     private javax.swing.JLabel labelInformacaoPlanar;
     private javax.swing.JLabel labelInformacaoSimples;
     private javax.swing.JLabel labelMatrizAdjacência;
     private javax.swing.JLabel labelMatrizIncidência;
+    private javax.swing.JLabel labelNomeGrafo;
     private javax.swing.JLabel labelPlanar;
     private javax.swing.JLabel labelSimples;
     private javax.swing.JMenuItem menuAbrirGrafos;
@@ -498,7 +601,10 @@ public class FramePrincipal extends JFrame {
     private javax.swing.JMenuItem menuIGrafosSalvar;
     private javax.swing.JMenuItem menuNovo;
     private javax.swing.JMenuItem menuSobre;
+    private javax.swing.JTextArea textoDefinicaoFormal;
+    private javax.swing.JTextArea textoListadeAdjacencia;
     private javax.swing.JTextArea textoMatrizAdjacencia;
     private javax.swing.JTextArea textoMatrizIncidencia;
+    private javax.swing.JLabel textoNomeGrafo;
     // End of variables declaration//GEN-END:variables
 }

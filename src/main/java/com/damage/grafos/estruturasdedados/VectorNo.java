@@ -30,6 +30,14 @@ public class VectorNo<No> extends Vector{
         return -1;
     }
     
+    public void recalculate_index(){
+        com.damage.grafos.No no;
+        for(int i = 0; i < this.size(); i++){
+            no =  (com.damage.grafos.No)this.get(i);
+            no.setIndex(i);
+        }
+    }
+    
     public void print(){
         com.damage.grafos.No no;
         for(int i = 0; i < this.size(); i++){

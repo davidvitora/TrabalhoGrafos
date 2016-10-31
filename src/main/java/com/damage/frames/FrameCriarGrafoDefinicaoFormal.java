@@ -4,6 +4,7 @@ package com.damage.frames;
 import com.damage.Response.Response;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.armazenamento.DefinicaoFormal;
+import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.util.Vector;
@@ -145,16 +146,17 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
             grafo = new Grafo();
             grafo.setNome(this.textoNomeGrafo.getText());
             Response response = DefinicaoFormal.build(this.textoDefinicaoFormal.getText(), grafo);
-            MatrizIncidencia.buildMatrizIncidenciaGrafo(grafo);
             if(response.getCode() == 400){
                 JOptionPane.showMessageDialog(null, response.getMessage(), "Erro ao ler definição formal", 1);
             }
             else{
+                grafo.update();
                 grafos.getGrafos().add(grafo);
                 JOptionPane.showMessageDialog(null, "Grafo criado com sucesso", "Sucesso", 1);
                 grafos.fireTableDataChanged();
                 this.dispose();
             }
+            grafo.update();
         }
     }//GEN-LAST:event_botaoCriarGrafoActionPerformed
 
