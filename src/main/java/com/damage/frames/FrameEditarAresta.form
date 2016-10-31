@@ -123,7 +123,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.comboBoxNo1.setModel(new ComboBoxNo((VectorNo&lt;No&gt;) nos.getNos()));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.comboBoxNo1.setModel(new ComboBoxNo((VectorNo&lt;No&gt;) nos.getNos()));&#xd;&#xa;this.comboBoxNo1.setSelectedItem(aresta.getNo1().getId());&#xd;&#xa;"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
@@ -139,7 +139,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.comboBoxNo2.setModel(new ComboBoxNo((VectorNo&lt;No&gt;) nos.getNos()));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.comboBoxNo2.setModel(new ComboBoxNo((VectorNo&lt;No&gt;) nos.getNos()));&#xd;&#xa;this.comboBoxNo2.setSelectedItem(aresta.getNo2().getId());"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
@@ -159,10 +159,13 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoNomeAresta">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="this.textoNomeAresta.setText(aresta.getId());"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="botaoCriarAresta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Criar"/>
+            <Property name="text" type="java.lang.String" value="Ok"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCriarArestaActionPerformed"/>

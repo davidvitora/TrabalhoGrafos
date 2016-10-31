@@ -1,6 +1,8 @@
 package com.damage.grafos;
 
 import com.damage.grafos.armazenamento.DefinicaoFormal;
+import com.damage.grafos.armazenamento.Definicoes;
+import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.grafos.estruturasdedados.VectorAresta;
 import com.damage.grafos.estruturasdedados.VectorNo;
@@ -9,6 +11,11 @@ public class Grafo {
     private String nome;
     private int[][] matrizI;
     private int[][] matrizA;
+    private String Simples = "Não";
+    private String Completo = "Não";
+    private String Conexo = "Não";
+    private String Planar = "Não";
+    private String listaAdjacencia;
     private VectorNo<No> no = null;
     private VectorAresta<Aresta> aresta = null;
     private String definicaoFormal;
@@ -81,6 +88,94 @@ public class Grafo {
 
     public void setDefinicaoFormal(String definicaoFormal) {
         this.definicaoFormal = definicaoFormal;
+    }
+    
+    public void update(){
+        this.getAresta().recalculate_index();
+        this.getNo().recalculate_index();
+        MatrizIncidencia.buildMatrizIncidenciaGrafo(this);
+        ListaDeAdjacencia.build(this);
+        Definicoes def = new Definicoes();
+        this.Simples = def .simples(this);
+        this.Planar = def.planar(this);
+        this.Completo = "Não";
+        generateDefinicaoFormal();
+    }
+    
+    public void generateDefinicaoFormal(){
+        String definicaoFormal = "G=({";
+        for(int i = 0; i < this.no.size(); i++){
+            definicaoFormal += this.no.getNo(i).getId();
+            if(i + 1 < this.no.size()){
+               definicaoFormal += ","; 
+            }
+        }
+        definicaoFormal += "},{";
+        for(int i = 0; i < this.aresta.size(); i++){
+            definicaoFormal += this.aresta.getAresta(i).getId();
+            if(i + 1 < this.aresta.size()){
+               definicaoFormal += ","; 
+            }
+        }
+        definicaoFormal += "},{";
+        for(int i = 0; i < this.aresta.size(); i++){
+            definicaoFormal += "g(" + this.aresta.getAresta(i).getId() + ")=("
+                + this.aresta.getAresta(i).getNo1().getId() + "-" + this.aresta.getAresta(i).getNo2().getId() + ")";
+            if(i + 1 < this.aresta.size()){
+               definicaoFormal += ","; 
+            }
+        }
+         definicaoFormal += "})";
+         this.definicaoFormal = definicaoFormal;
+    }
+    
+    public void resetaVisitas(){
+    for (int i = 0; i < no.size(); i++){
+        no.getNo(i).setVisitado(false);
+    }
+    for (int i = 0; i < aresta.size(); i++){
+        aresta.getAresta(i).setVisitado(false);
+    }    
+    }
+
+    public String getListaAdjacencia() {
+        return listaAdjacencia;
+    }
+
+    public void setListaAdjacencia(String listaAdjacencia) {
+        this.listaAdjacencia = listaAdjacencia;
+    }
+
+    public String getSimples() {
+        return Simples;
+    }
+
+    public void setSimples(String Simples) {
+        this.Simples = Simples;
+    }
+
+    public String getCompleto() {
+        return Completo;
+    }
+
+    public void setCompleto(String Completo) {
+        this.Completo = Completo;
+    }
+
+    public String getConexo() {
+        return Conexo;
+    }
+
+    public void setConexo(String Conexo) {
+        this.Conexo = Conexo;
+    }
+
+    public String getPlanar() {
+        return Planar;
+    }
+
+    public void setPlanar(String Planar) {
+        this.Planar = Planar;
     }
     
 }
