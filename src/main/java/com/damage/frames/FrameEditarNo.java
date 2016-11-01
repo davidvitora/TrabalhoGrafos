@@ -7,6 +7,7 @@ package com.damage.frames;
 
 import com.damage.grafos.No;
 import com.damage.grafos.estruturasdedados.VectorNo;
+import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
 import javax.swing.JOptionPane;
 
@@ -18,11 +19,12 @@ public class FrameEditarNo extends javax.swing.JFrame {
 
     No no;
     private ModeloTabelaNo nos;
+    private ModeloTabelaAresta arestas;
     
-    public FrameEditarNo(ModeloTabelaNo nos, No no) {
+    public FrameEditarNo(ModeloTabelaNo nos, ModeloTabelaAresta modeloAresta, No no) {
+        this.arestas = modeloAresta;
         this.no = no;
         this.setNos(nos);
-        this.textoNomeNo.setText(no.getId());
         initComponents();
     }
     
@@ -53,6 +55,8 @@ public class FrameEditarNo extends javax.swing.JFrame {
         });
 
         labelNovoNo.setText("Digite o nome do novo nó:");
+
+        this.textoNomeNo.setText(no.getId());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,17 +95,14 @@ public class FrameEditarNo extends javax.swing.JFrame {
         if(this.textoNomeNo.getText().length() < 1){
             JOptionPane.showMessageDialog(null, "Insira um nome de no minio 1 caractere para o Nó", "Insira um nome", 1);
         }else if(this.nos.getNos().findById(this.textoNomeNo.getText()) != null){
-            if(this.nos.getNos().findById(this.textoNomeNo.getText()).equals(no)){
-                this.dispose();
-            }else{
+            if(!this.nos.getNos().findById(this.textoNomeNo.getText()).equals(no)){
                 JOptionPane.showMessageDialog(null, "Já existe um nó com o nome informado", "Nó já criado", 1);
             }
         }
-        else{
-            this.no.setId(this.textoNomeNo.getText());
-            this.getNos().fireTableDataChanged();
-            this.dispose();
-        }
+        this.no.setId(this.textoNomeNo.getText());
+        this.getNos().fireTableDataChanged();
+        this.arestas.fireTableDataChanged();
+        this.dispose();        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -140,8 +141,8 @@ public class FrameEditarNo extends javax.swing.JFrame {
         });
     }
     
-    public static void abrir(ModeloTabelaNo nos, No no){
-        new FrameEditarNo(nos, no).setVisible(true);
+    public static void abrir(ModeloTabelaNo nos,ModeloTabelaAresta arestas , No no){
+        new FrameEditarNo(nos, arestas ,no).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

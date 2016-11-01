@@ -9,6 +9,8 @@ import com.damage.grafos.Aresta;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.No;
 import com.damage.grafos.estruturasdedados.VectorNo;
+import com.damage.util.ContMaster;
+import java.util.Vector;
 
 /**
  *
@@ -75,8 +77,67 @@ public class Definicoes {
         return "Sim";
     }
     
-    public static  String planar(Grafo grafo){
-        return "Planar";
+    public void menorCicloRe(No no, No noRaiz, ContMaster contMaster, int cont){
+        for(int i = 0; i < no.getArestas().size(); i++){
+            if(no.getArestas().getAresta(i).getVisitado() == false){
+                if(no.getArestas().getAresta(i).getNo2().equals(no.getArestas().getAresta(i).getNo1())){
+                    contMaster.setContMaster(1);
+                    //
+                    return;
+                }
+                if(no.getArestas().getAresta(i).getNo1().equals(no)){
+                    no.getArestas().getAresta(i).setVisitado(true);
+                    no = no.getArestas().getAresta(i).getNo2();
+                    if(no.getVisitado() == true){
+                        continue;
+                    }
+                    no.setVisitado(true);
+                }else{
+                    no.getArestas().getAresta(i).setVisitado(true);
+                    no = no.getArestas().getAresta(i).getNo1();
+                    if(no.getVisitado() == true){
+                        continue;
+                    }
+                    no.setVisitado(true);
+                }
+                cont++;
+                if(cont > contMaster.getContMaster()){
+                    continue;
+                }
+                if(no.equals(noRaiz)){
+                    if(contMaster.getContMaster() > cont)
+                    contMaster.setContMaster(cont);
+                    break;
+                }
+                menorCicloRe(no,noRaiz,contMaster,cont);
+                
+            }
+        }
+    }
+    
+    public String planar(Grafo grafo){
+        Vector<No> nos = grafo.getNo();
+        No noRaiz;
+        Aresta aresta;
+        No noAtual;
+        int cont = 0;
+        ContMaster contMaster = new ContMaster(999);
+        for (int i=0;i<nos.size();i++){
+            noRaiz = nos.get(i);
+            menorCicloRe(nos.get(i),noRaiz,contMaster,cont);
+            grafo.resetaVisitas();  
+        }
+        System.out.println(contMaster.getContMaster());
+        if (contMaster.getContMaster() > 2){
+            if (grafo.getAresta().size() <= 2*(grafo.getNo().size()) - 4){
+                return "Sim"; 
+            }
+            else return "Não";
+        }
+        else if(grafo.getAresta().size() <= 3*(grafo.getNo().size()) - 6){
+            return "Sim";
+        }
+        else return "Não"; 
     }
     
     public static  String conexo(Grafo grafo){

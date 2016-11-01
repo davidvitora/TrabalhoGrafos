@@ -5,6 +5,7 @@ import com.damage.grafos.Aresta;
 import com.damage.grafos.No;
 import java.awt.Color;
 import java.awt.Graphics;
+import static java.lang.Math.atan2;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +23,7 @@ No no1, no2;
        
         initComponents();
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -31,7 +33,9 @@ No no1, no2;
         menuNovo = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
+        setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -71,7 +75,8 @@ No no1, no2;
             .addGap(0, 579, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(816, 638));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoActionPerformed
@@ -79,12 +84,15 @@ No no1, no2;
     }//GEN-LAST:event_menuNovoActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-           this.dispose(); 
+           
+        this.dispose(); 
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public void paint(Graphics g)
     {
-
+        if(novo)
+        {
         if(selecionado)
         {
             if(no1!=null&&no2!=null)
@@ -96,7 +104,6 @@ No no1, no2;
                     selecionado=false;
                     this.repaint();
                 }
-               
                 
                 else{
                     g.setColor(Color.blue);
@@ -104,6 +111,10 @@ No no1, no2;
                     g.setColor(Color.black);
                     g.fillOval(no1.getCordenadaX(), no1.getCordenadaY(), 20,20);
                     g.fillOval(no2.getCordenadaX(), no2.getCordenadaY(), 20,20);
+                    
+          
+                     
+                     
                     selecionado=false;
                     no1=null;
                     no2=null;
@@ -131,8 +142,11 @@ No no1, no2;
              no2=null;
              selecionadoVermelho=false;
         }
+        
+    }
     }        
     
+ 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         
         if(novo)
@@ -185,10 +199,9 @@ No no1, no2;
         return null;
    }
     public static void main(String args[]) {
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DesenhaGrafos().setVisible(true);
+               
             }
         });
     }

@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class FrameEditarAresta extends javax.swing.JFrame {
 
-    Aresta aresta = new Aresta();
+    Aresta aresta;
     ModeloTabelaAresta arestas;
     ModeloTabelaNo nos;
     
@@ -28,7 +28,8 @@ public class FrameEditarAresta extends javax.swing.JFrame {
         initComponents();
     }
     
-    public FrameEditarAresta(ModeloTabelaAresta arestas, ModeloTabelaNo nos) {
+    public FrameEditarAresta(ModeloTabelaAresta arestas, Aresta aresta, ModeloTabelaNo nos) {
+        this.aresta = aresta;
         this.arestas = arestas;
         this.nos = nos;
         initComponents();
@@ -59,9 +60,11 @@ public class FrameEditarAresta extends javax.swing.JFrame {
 
         comboBoxNo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         this.comboBoxNo1.setModel(new ComboBoxNo((VectorNo<No>) nos.getNos()));
+        this.comboBoxNo1.setSelectedItem(aresta.getNo1().getId());
 
         comboBoxNo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         this.comboBoxNo2.setModel(new ComboBoxNo((VectorNo<No>) nos.getNos()));
+        this.comboBoxNo2.setSelectedItem(aresta.getNo2().getId());
 
         labelNo1.setText("Nó");
 
@@ -69,7 +72,9 @@ public class FrameEditarAresta extends javax.swing.JFrame {
 
         labelNome.setText("Nome:");
 
-        botaoCriarAresta.setText("Criar");
+        this.textoNomeAresta.setText(aresta.getId());
+
+        botaoCriarAresta.setText("Ok");
         botaoCriarAresta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCriarArestaActionPerformed(evt);
@@ -146,8 +151,6 @@ public class FrameEditarAresta extends javax.swing.JFrame {
         ComboBoxNo combobox;
         if(this.textoNomeAresta.getText().length() < 1){
             JOptionPane.showMessageDialog(null, "Insira um nome de no minimo 1 caractere para o Nó", "Insira um nome", 1);
-        }else if(this.arestas.getArestas().findIndexById(this.textoNomeAresta.getText()) != -1){
-                        JOptionPane.showMessageDialog(null, "Já existe uma aresta com o nome informado", "Aresta já criada", 1);
         }
         else if(this.comboBoxNo1.getSelectedItem() == null || this.comboBoxNo2.getSelectedItem() == null){
             JOptionPane.showMessageDialog(null, "Selecione os nós da aresta", "Selecione os Nós", 1);
@@ -159,9 +162,14 @@ public class FrameEditarAresta extends javax.swing.JFrame {
             this.aresta.setNo2(combobox.getSelectedNo());
             this.aresta.setId(this.textoNomeAresta.getText());
             this.aresta.setIndex(this.arestas.getArestas().size());
-            this.arestas.getArestas().add(aresta);
             this.arestas.fireTableDataChanged();
-            this.dispose();
+            if(this.arestas.getArestas().findIndexById(this.textoNomeAresta.getText()) != -1){
+                if(this.arestas.getArestas().findById(this.textoNomeAresta.getText()).equals(aresta)){
+                    this.dispose();
+            }else{
+                        JOptionPane.showMessageDialog(null, "Já existe uma aresta com o nome informado", "Aresta já criada", 1);
+            }
+        }
         }
     }//GEN-LAST:event_botaoCriarArestaActionPerformed
 
@@ -201,8 +209,8 @@ public class FrameEditarAresta extends javax.swing.JFrame {
         });
     }
     
-    public static void abrir(ModeloTabelaAresta arestas, ModeloTabelaNo nos){
-        new FrameEditarAresta(arestas,nos).setVisible(true);
+    public static void abrir(ModeloTabelaAresta arestas,Aresta aresta, ModeloTabelaNo nos){
+        new FrameEditarAresta(arestas,aresta,nos).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

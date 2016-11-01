@@ -4,6 +4,7 @@ package com.damage.frames;
 import com.damage.Response.Response;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.armazenamento.DefinicaoFormal;
+import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.util.Vector;
@@ -61,7 +62,7 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
 
         textoDefinicaoFormal.setColumns(20);
         textoDefinicaoFormal.setRows(5);
-        textoDefinicaoFormal.setText("G=({a,b,c},{1,2,3,4},{g(1)=(a-b),g(2)=(b-c),g(3)=(a-c),g(4)=(c-b)})");
+        textoDefinicaoFormal.setText("G=({a,b,c,d,e},{1,2,3,4,5,6,7,8},{g(1)=(a-d),g(2)=(a-b),g(3)=(a-c),g(4)=(a-e),g(5)=(b-d),g(6)=(c-d),g(7)=(d-e),g(8)=(b-e)})");
         jScrollPane1.setViewportView(textoDefinicaoFormal);
 
         mensagem.setForeground(new java.awt.Color(255, 0, 0));
@@ -145,16 +146,17 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
             grafo = new Grafo();
             grafo.setNome(this.textoNomeGrafo.getText());
             Response response = DefinicaoFormal.build(this.textoDefinicaoFormal.getText(), grafo);
-            MatrizIncidencia.buildMatrizIncidenciaGrafo(grafo);
             if(response.getCode() == 400){
                 JOptionPane.showMessageDialog(null, response.getMessage(), "Erro ao ler definição formal", 1);
             }
             else{
+                grafo.update();
                 grafos.getGrafos().add(grafo);
                 JOptionPane.showMessageDialog(null, "Grafo criado com sucesso", "Sucesso", 1);
                 grafos.fireTableDataChanged();
                 this.dispose();
             }
+            grafo.update();
         }
     }//GEN-LAST:event_botaoCriarGrafoActionPerformed
 

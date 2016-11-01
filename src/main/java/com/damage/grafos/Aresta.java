@@ -5,7 +5,7 @@ public class Aresta {
     private int index;
     private No no1;
     private No no2;
-    
+    private boolean visitado = false;
     
     public Aresta(String id){
         this.id = id;
@@ -58,5 +58,12 @@ public class Aresta {
 
     public void setNo2(No no2) {
         this.no2 = no2;
+    }
+    
+    public void setVisitado(boolean visitado){
+        this.visitado = visitado;
+    }
+    public boolean getVisitado(){
+        return visitado;
     }
 }

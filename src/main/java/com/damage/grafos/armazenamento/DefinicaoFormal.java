@@ -100,6 +100,7 @@ public class DefinicaoFormal {
                         return exceptionNoNaoCriado(id,posAtual);
                     }
                     aresta.setNo1(no.findById(id));
+                    no.findById(id).getArestas().add(aresta);
                     if(definicaoFormal.charAt(posAtual) != '-'){
                         return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);
                     }
@@ -110,7 +111,7 @@ public class DefinicaoFormal {
                     if(no.findById(id) == null){
                         return exceptionNoNaoCriado(id,posAtual);
                     }
-                    aresta.setNo2(no.findById(id));
+                    aresta.setNo2(no.findById(id));       
                     posAtual++;
                     if(definicaoFormal.charAt(posAtual) != ',' && definicaoFormal.charAt(posAtual) != '}'){
                         return exceptionCNE(',', definicaoFormal.charAt(posAtual), posAtual);

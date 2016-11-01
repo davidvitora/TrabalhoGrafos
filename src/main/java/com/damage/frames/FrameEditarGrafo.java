@@ -7,6 +7,7 @@ package com.damage.frames;
 
 import com.damage.grafos.Grafo;
 import com.damage.grafos.No;
+import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
@@ -17,16 +18,17 @@ import javax.swing.JOptionPane;
  *
  * @author David .V
  */
-public class FrameCriarGrafoEditor extends javax.swing.JFrame {
+public class FrameEditarGrafo extends javax.swing.JFrame {
 
-    private Grafo grafo = new Grafo();
+    private Grafo grafo;
     private ModeloTabelaGrafos grafos;
     
-    public FrameCriarGrafoEditor() {
+    public FrameEditarGrafo() {
         initComponents();
     }
     
-    public FrameCriarGrafoEditor(ModeloTabelaGrafos grafos) {
+    public FrameEditarGrafo(Grafo grafo, ModeloTabelaGrafos grafos) {
+        this.grafo = grafo;
         this.grafos = grafos;
         initComponents();
     }
@@ -55,9 +57,14 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         botaoCriarAresta = new javax.swing.JButton();
         botaoEditarAresta = new javax.swing.JButton();
         botaoExcluirAresta = new javax.swing.JButton();
-        botaoCriarGrafo = new javax.swing.JButton();
+        botaoEditarGrafo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nós"));
 
@@ -131,6 +138,8 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         );
 
         labelNome.setText("Nome");
+
+        this.textoNome.setText(grafo.getNome());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -231,10 +240,10 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
                 .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        botaoCriarGrafo.setText("Criar Grafo");
-        botaoCriarGrafo.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditarGrafo.setText("Ok");
+        botaoEditarGrafo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCriarGrafoActionPerformed(evt);
+                botaoEditarGrafoActionPerformed(evt);
             }
         });
 
@@ -246,8 +255,8 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoCriarGrafo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(botaoEditarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -263,7 +272,7 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGap(156, 156, 156)
-                .addComponent(botaoCriarGrafo)
+                .addComponent(botaoEditarGrafo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -271,7 +280,7 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarGrafoActionPerformed
+    private void botaoEditarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarGrafoActionPerformed
         if(this.textoNome.getText().length() < 1){
             JOptionPane.showMessageDialog(null, "Insira um nome de no minimo 1 caractere para o grafo", "Insira um nome", 1);
         }else if(this.grafo.getNo().size() < 1){
@@ -280,12 +289,11 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         else{
             grafo.update();
             grafo.setNome(this.textoNome.getText());
-            grafos.getGrafos().add(grafo);
             grafos.fireTableDataChanged();
-            JOptionPane.showMessageDialog(null, "Grafo criado comsucesso", "Sucesso", 1);
+            JOptionPane.showMessageDialog(null, "Grafo Editado com sucesso", "Sucesso", 1);
             this.dispose();
         }
-    }//GEN-LAST:event_botaoCriarGrafoActionPerformed
+    }//GEN-LAST:event_botaoEditarGrafoActionPerformed
 
     private void botaoCriarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarNoActionPerformed
         FrameCriarNo.abrir((ModeloTabelaNo) tabelaNos.getModel());
@@ -349,6 +357,13 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         FrameEditarAresta.abrir(modeloAresta, modeloAresta.getArestas().getAresta(tabelaArestas.getSelectedRow()) ,modeloNo);
     }//GEN-LAST:event_botaoEditarArestaActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        grafo.update();
+        grafo.setNome(this.textoNome.getText());
+        grafos.fireTableDataChanged();
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -366,34 +381,36 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarGrafoEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarGrafoEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarGrafoEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameCriarGrafoEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameEditarGrafo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameCriarGrafoEditor().setVisible(true);
+                new FrameEditarGrafo().setVisible(true);
             }
         });
     }
     
-    public static void abrir(ModeloTabelaGrafos grafos){
-        new FrameCriarGrafoEditor(grafos).setVisible(true);
+    public static void abrir(Grafo grafo, ModeloTabelaGrafos grafos){
+        new FrameEditarGrafo(grafo, grafos).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCriarAresta;
-    private javax.swing.JButton botaoCriarGrafo;
     private javax.swing.JButton botaoCriarNo;
     private javax.swing.JButton botaoEditarAresta;
+    private javax.swing.JButton botaoEditarGrafo;
     private javax.swing.JButton botaoEditarNo;
     private javax.swing.JButton botaoExcluirAresta;
     private javax.swing.JButton botaoExcluirNo;
