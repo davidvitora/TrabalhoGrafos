@@ -375,14 +375,13 @@ public class FramePrincipal extends JFrame {
         jMenu2.setText("Grafico");
 
         menuGrafoDesenhar.setText("Desenhar");
-<<<<<<< HEAD
-=======
+
         menuGrafoDesenhar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuGrafoDesenharActionPerformed(evt);
             }
         });
->>>>>>> refs/remotes/origin/Marlon
+        
         jMenu2.add(menuGrafoDesenhar);
 
         jMenuBar1.add(jMenu2);
@@ -435,10 +434,9 @@ public class FramePrincipal extends JFrame {
       Definicoes definicoes = new Definicoes();
       Grafo grafo = this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow());
       this.textoMatrizIncidencia.setText(grafo.getMatrizIncidenciaString());
-<<<<<<< HEAD
-=======
+
        this.textoMatrizAdjacencia.setText(grafo.getMatrizAdjacenciaString());
->>>>>>> refs/remotes/origin/Marlon
+
       this.textoListadeAdjacencia.setText(grafo.getListaAdjacencia());
       this.labelInformacaoCompleto.setText(grafo.getCompleto());
       this.labelInformacaoSimples.setText(grafo.getSimples());
@@ -541,15 +539,13 @@ public class FramePrincipal extends JFrame {
         FrameEditarGrafo.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()), grafos);
     }//GEN-LAST:event_botaoMenuModificarGrafoActionPerformed
 
-<<<<<<< HEAD
-=======
+
     private void menuGrafoDesenharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGrafoDesenharActionPerformed
     
         new DesenhaGrafos().setVisible(true);
         
     }//GEN-LAST:event_menuGrafoDesenharActionPerformed
 
->>>>>>> refs/remotes/origin/Marlon
     /**
      * @param args the command line arguments
      */
