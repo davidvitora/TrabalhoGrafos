@@ -19,6 +19,7 @@ import java.util.Vector;
 public class Definicoes {
     
     public static String completo(Grafo grafo){
+<<<<<<< HEAD
         No no;
         VectorNo<No> nos;
         
@@ -46,6 +47,14 @@ public class Definicoes {
         }
        
     return "Sim";
+=======
+        boolean simples;
+        if(!simples(grafo).equalsIgnoreCase("Sim")){
+            return "Não";
+        }
+
+        return "Sim";
+>>>>>>> refs/remotes/origin/Marlon
     }
     
     public static String simples(Grafo grafo){

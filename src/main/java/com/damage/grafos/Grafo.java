@@ -3,6 +3,10 @@ package com.damage.grafos;
 import com.damage.grafos.armazenamento.DefinicaoFormal;
 import com.damage.grafos.armazenamento.Definicoes;
 import com.damage.grafos.armazenamento.ListaDeAdjacencia;
+<<<<<<< HEAD
+=======
+import com.damage.grafos.armazenamento.MatrizAdjacencia;
+>>>>>>> refs/remotes/origin/Marlon
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.grafos.estruturasdedados.VectorAresta;
 import com.damage.grafos.estruturasdedados.VectorNo;
@@ -30,6 +34,21 @@ public class Grafo {
         aresta = new VectorAresta<Aresta>();
     }
     
+<<<<<<< HEAD
+=======
+       public String getMatrizAdjacenciaString(){
+        String stringMatrizAdjacencia = "";
+        for(int i = 0; i < getNo().size(); i++){
+            stringMatrizAdjacencia +=  "| ";
+            for(int j = 0; j < getNo().size(); j++){
+                stringMatrizAdjacencia += getMatrizA()[i][j] + " ";
+            }
+            stringMatrizAdjacencia += "| " + "\n";
+        }
+        return stringMatrizAdjacencia;
+    }
+    
+>>>>>>> refs/remotes/origin/Marlon
     public String getMatrizIncidenciaString(){
         String stringMatrizIncidencia = "";
         for(int i = 0; i < getNo().size(); i++){
@@ -94,6 +113,10 @@ public class Grafo {
         this.getAresta().recalculate_index();
         this.getNo().recalculate_index();
         MatrizIncidencia.buildMatrizIncidenciaGrafo(this);
+<<<<<<< HEAD
+=======
+        MatrizAdjacencia.buildMatrizAdjacenciaGrafo(this);
+>>>>>>> refs/remotes/origin/Marlon
         ListaDeAdjacencia.build(this);
         Definicoes def = new Definicoes();
         this.Simples = def .simples(this);
