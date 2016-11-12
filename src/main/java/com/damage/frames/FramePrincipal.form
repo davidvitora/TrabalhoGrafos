@@ -49,12 +49,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Desenhar"/>
               </Properties>
-<<<<<<< HEAD
-=======
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuGrafoDesenharActionPerformed"/>
               </Events>
->>>>>>> refs/remotes/origin/Marlon
             </MenuItem>
           </SubComponents>
         </Menu>
