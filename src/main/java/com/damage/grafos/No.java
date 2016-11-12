@@ -7,16 +7,10 @@ import com.damage.grafos.estruturasdedados.VectorAresta;
 public class No {
     private String id;
     private int index;
-<<<<<<< HEAD
     private VectorAresta<Aresta> arestas = new VectorAresta();
     private boolean visitado = false;
-    
-=======
-
     private int cordenadaX;
     private int cordenadaY;
-    private VectorAresta<Aresta> arestas = new VectorAresta();
-    private boolean visitado = false;
     
     public int getCordenadaX() {
         return cordenadaX;
@@ -34,7 +28,6 @@ public class No {
         this.cordenadaY = cordenadaY;
     }
     
->>>>>>> refs/remotes/origin/Marlon
     public No(String id){
         this.id = id;
     }
