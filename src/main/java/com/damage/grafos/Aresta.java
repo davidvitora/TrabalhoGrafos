@@ -6,6 +6,25 @@ public class Aresta {
     private No no1;
     private No no2;
     private boolean visitado = false;
+    private int contLaco=0;
+    private int contParalelo=0;
+    
+
+        public void setContLaco(int contLaco) {
+            this.contLaco = contLaco;
+        }
+
+        public void setContParalelo(int contParalelo) {
+            this.contParalelo = contParalelo;
+        }
+
+        public int getContLaco() {
+            return contLaco;
+        }
+
+        public int getContParalelo() {
+            return contParalelo;
+        }
     
     public Aresta(String id){
         this.id = id;
