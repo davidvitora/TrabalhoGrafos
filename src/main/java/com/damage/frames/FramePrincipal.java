@@ -498,6 +498,7 @@ public class FramePrincipal extends JFrame {
         /*Vetor de grafos e grafo temporario*/
         Vector<Grafo> vetorGrafos = new Vector<Grafo>();
         Grafo grafo;
+        String texto;
         /*--*/
         int contLine = 0;
         JFileChooser arquivo = new JFileChooser();
@@ -517,10 +518,19 @@ public class FramePrincipal extends JFrame {
                  return;
               }
               grafo.update();
-              if(linha.substring(linha.indexOf("|") + 1).replace("|", "").length() < 4){
+              //Texto será definido como o nome do grafo
+              texto = linha.substring(linha.indexOf("|") + 1,linha.lastIndexOf("|")).replace("|", "");
+              if(texto.length() < 4){
                  JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 4 caracteres", "Erro ao ler definição formal", 1); 
               }
-              grafo.setNome(linha.substring(linha.lastIndexOf("|")).replace("|", ""));
+              grafo.setNome(texto);
+              //Texto será denifindo com as cordenadas dos grafos
+              texto = linha.substring(linha.lastIndexOf("|")).replace("|", "");
+              resposta = DefinicaoFormal.leCoordendas(texto, grafo);
+              if(resposta.getCode() == 400){
+                 JOptionPane.showMessageDialog(null, resposta.getMessage() + "\nLinha do erro: " + contLine, "Erro ao ler cordenadas", 1);
+                 return;
+              }
               vetorGrafos.add(grafo);
               linha = lerArq.readLine();
               contLine++;
@@ -546,19 +556,19 @@ public class FramePrincipal extends JFrame {
             PrintWriter gravarArq = new PrintWriter(arq);
             for(Grafo grafo : grafos.getGrafos()){
                 gravarArq.print(grafo.getDefinicaoFormal());
-                gravarArq.println("|");
+                gravarArq.print("|" + grafo.getNome());
+                gravarArq.print("|");
                  for(int i = 0;i<grafo.getNo().size();i++)
                 {
                     gravarArq.print(grafo.getNo().getNo(i).getId() + 
-                            ": X=" + grafo.getNo().getNo(i).getCordenadaX() + 
-                             " Y=" + grafo.getNo().getNo(i).getCordenadaY());
+                            ":" + grafo.getNo().getNo(i).getCordenadaX() + 
+                             "-" + grafo.getNo().getNo(i).getCordenadaY());
                     if(grafo.getNo().getNo(grafo.getNo().size()-1)!=grafo.getNo().getNo(i))
                     {
                         gravarArq.print(",");
                     }
                 }
-                gravarArq.print("|" + grafo.getNome());
-                gravarArq.println("|");
+                gravarArq.println(":");
             }
             arq.close();
         } catch (IOException ex) {
