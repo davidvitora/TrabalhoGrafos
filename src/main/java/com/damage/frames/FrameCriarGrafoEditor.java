@@ -8,6 +8,7 @@ package com.damage.frames;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.No;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
+import com.damage.grafos.estruturasdedados.GeraPosicoesRamdomicas;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
@@ -284,6 +285,19 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
             grafos.fireTableDataChanged();
             JOptionPane.showMessageDialog(null, "Grafo criado comsucesso", "Sucesso", 1);
             this.dispose();
+            GeraPosicoesRamdomicas gerador = new GeraPosicoesRamdomicas();
+            for(int i =0; i<grafo.getNo().size(); i++)
+             {
+                 int x = gerador.getNumeroRamdomX(),y = gerador.getNumeroRamdomY();
+                   for(int j =0; j<grafo.getNo().size(); j++)
+                   {
+                       if(x>grafo.getNo().getNo(j).getCordenadaX()-50&&x<grafo.getNo().getNo(j).getCordenadaX()+50&&y>grafo.getNo().getNo(j).getCordenadaY()-50&&y<grafo.getNo().getNo(j).getCordenadaY()+50)
+                          i--;
+                   }
+                 grafo.getNo().getNo(i).setCordenadaX(x);
+                 grafo.getNo().getNo(i).setCordenadaY(y);
+
+             }
         }
     }//GEN-LAST:event_botaoCriarGrafoActionPerformed
 

@@ -6,6 +6,7 @@ import com.damage.grafos.Grafo;
 import com.damage.grafos.No;
 import com.damage.grafos.estruturasdedados.VectorAresta;
 import com.damage.grafos.estruturasdedados.VectorNo;
+import javax.swing.JOptionPane;
 
 
 public class DefinicaoFormal {
@@ -191,6 +192,41 @@ public class DefinicaoFormal {
         response.setCode(400);
         response.setMessage("Duplicidade nos dados - Caracter " + 
                        index + " - O No " + id + " já foi criado");
+        return response;
+    }
+    public static Response leCoordendas(String cordenadas, Grafo grafo)
+    {
+        cordenadas = cordenadas.replaceAll(" ", "");
+        int index = 0;
+        Response response = new Response();
+        No no;
+        String texto;
+        try{
+            for(;index < cordenadas.length();index++){
+                //Vai verificar o nome
+                for(texto = ""; cordenadas.charAt(index) != ':'; index++){
+                    texto += cordenadas.charAt(index);
+                }
+                no = grafo.getNo().findById(texto);
+                index++;
+                //Vai verificar o valor da cordenada X
+                for(texto = ""; cordenadas.charAt(index) != '-'; index++){
+                    texto += cordenadas.charAt(index);
+                }
+                no.setCordenadaX(Integer.parseInt(texto));
+                index++;
+                for(texto = ""; cordenadas.charAt(index) != ',' && cordenadas.charAt(index) != ':'; index++){
+                    texto += cordenadas.charAt(index);
+                }
+                no.setCordenadaY(Integer.parseInt(texto));
+            }
+                response.setCode(200);
+                response.setMessage("Sucesso");
+                return response;
+        }catch(Exception e){
+            response.setCode(400);
+            response.setMessage("Não foi possivelvel ler as cordenadas dos nós");
+        }
         return response;
     }
 }
