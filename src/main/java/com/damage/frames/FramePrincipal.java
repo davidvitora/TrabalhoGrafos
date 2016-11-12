@@ -379,11 +379,13 @@ public class FramePrincipal extends JFrame {
         jMenu2.setText("Grafo");
 
         menuGrafoDesenhar.setText("Desenhar Novo");
+        menuGrafoDesenhar.setText("Desenhar");
         menuGrafoDesenhar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuGrafoDesenharActionPerformed(evt);
             }
         });
+        
         jMenu2.add(menuGrafoDesenhar);
 
         menuCriarGrafo.setText("Criar Grafo");
@@ -462,7 +464,9 @@ public class FramePrincipal extends JFrame {
       Definicoes definicoes = new Definicoes();
       Grafo grafo = this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow());
       this.textoMatrizIncidencia.setText(grafo.getMatrizIncidenciaString());
+
        this.textoMatrizAdjacencia.setText(grafo.getMatrizAdjacenciaString());
+
       this.textoListadeAdjacencia.setText(grafo.getListaAdjacencia());
       this.labelInformacaoCompleto.setText(grafo.getCompleto());
       this.labelInformacaoSimples.setText(grafo.getSimples());
@@ -572,11 +576,11 @@ public class FramePrincipal extends JFrame {
         this.resetarInformacoes();
     }//GEN-LAST:event_menuNovoActionPerformed
 
-    private void menuGrafoDesenharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGrafoDesenharActionPerformed
+    private void menuGrafoDesenharActionPerformed(java.awt.event.ActionEvent evt) {                                                  
     
         DesenhaGrafos.abrir(grafos);
         
-    }//GEN-LAST:event_menuGrafoDesenharActionPerformed
+    }                                                 
 
     private void menuCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCriarGrafoActionPerformed
         FrameCriarGrafo.abrir(grafos);
@@ -589,6 +593,7 @@ public class FramePrincipal extends JFrame {
         }
         FrameEditarGrafo.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()), grafos);
     }//GEN-LAST:event_menuModificarGrafoActionPerformed
+
 
     private void menuExcluirGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExcluirGrafoActionPerformed
         if(this.TabelaGrafos.getSelectedRow() == -1){

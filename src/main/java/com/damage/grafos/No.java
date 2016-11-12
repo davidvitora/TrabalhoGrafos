@@ -7,11 +7,10 @@ import com.damage.grafos.estruturasdedados.VectorAresta;
 public class No {
     private String id;
     private int index;
-
-    private int cordenadaX;
-    private int cordenadaY;
     private VectorAresta<Aresta> arestas = new VectorAresta();
     private boolean visitado = false;
+    private int cordenadaX;
+    private int cordenadaY;
     
     public int getCordenadaX() {
         return cordenadaX;
