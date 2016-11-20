@@ -89,6 +89,8 @@ public class FramePrincipal extends JFrame {
         menuCriarGrafo = new javax.swing.JMenuItem();
         menuModificarGrafo = new javax.swing.JMenuItem();
         menuExcluirGrafo = new javax.swing.JMenuItem();
+        menuUtilitarios = new javax.swing.JMenu();
+        menuMenorCiclo = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenuItem();
 
@@ -379,13 +381,11 @@ public class FramePrincipal extends JFrame {
         jMenu2.setText("Grafo");
 
         menuGrafoDesenhar.setText("Desenhar Novo");
-        menuGrafoDesenhar.setText("Desenhar");
         menuGrafoDesenhar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuGrafoDesenharActionPerformed(evt);
             }
         });
-        
         jMenu2.add(menuGrafoDesenhar);
 
         menuCriarGrafo.setText("Criar Grafo");
@@ -413,6 +413,18 @@ public class FramePrincipal extends JFrame {
         jMenu2.add(menuExcluirGrafo);
 
         jMenuBar1.add(jMenu2);
+
+        menuUtilitarios.setText("Utilitários");
+
+        menuMenorCiclo.setText("Menor Ciclo");
+        menuMenorCiclo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMenorCicloActionPerformed(evt);
+            }
+        });
+        menuUtilitarios.add(menuMenorCiclo);
+
+        jMenuBar1.add(menuUtilitarios);
 
         menuAjuda.setText("Ajuda");
 
@@ -520,8 +532,8 @@ public class FramePrincipal extends JFrame {
               grafo.update();
               //Texto será definido como o nome do grafo
               texto = linha.substring(linha.indexOf("|") + 1,linha.lastIndexOf("|")).replace("|", "");
-              if(texto.length() < 4){
-                 JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 4 caracteres", "Erro ao ler definição formal", 1); 
+              if(texto.length() < 1){
+                 JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 1 caractere", "Erro ao ler definição formal", 1); 
               }
               grafo.setNome(texto);
               //Texto será denifindo com as cordenadas dos grafos
@@ -615,6 +627,14 @@ public class FramePrincipal extends JFrame {
         this.resetarInformacoes();
     }//GEN-LAST:event_menuExcluirGrafoActionPerformed
 
+    private void menuMenorCicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMenorCicloActionPerformed
+        if(this.TabelaGrafos.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(labelCompleto, "Selecione um grafo para verificar o menor ciclo");
+            return;
+        }
+        FrameMenorCaminho.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()));
+    }//GEN-LAST:event_menuMenorCicloActionPerformed
+
     
     public static void main(String args[]) {
  
@@ -682,9 +702,11 @@ public class FramePrincipal extends JFrame {
     private javax.swing.JMenuItem menuGrafoDesenhar;
     private javax.swing.JMenu menuGrafosNovo;
     private javax.swing.JMenuItem menuIGrafosSalvar;
+    private javax.swing.JMenuItem menuMenorCiclo;
     private javax.swing.JMenuItem menuModificarGrafo;
     private javax.swing.JMenuItem menuNovo;
     private javax.swing.JMenuItem menuSobre;
+    private javax.swing.JMenu menuUtilitarios;
     private javax.swing.JPanel painelDesenho;
     private javax.swing.JTextArea textoDefinicaoFormal;
     private javax.swing.JTextArea textoListadeAdjacencia;

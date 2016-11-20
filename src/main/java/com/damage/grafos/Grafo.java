@@ -45,6 +45,10 @@ public class Grafo {
     
     public String getMatrizIncidenciaString(){
         String stringMatrizIncidencia = "";
+        if(this.getAresta().isEmpty()){
+             stringMatrizIncidencia = "Não é possivel contruir a Matriz de Adjacência";
+             return stringMatrizIncidencia;
+        }
         for(int i = 0; i < getNo().size(); i++){
             stringMatrizIncidencia +=  "| ";
             for(int j = 0; j < getAresta().size(); j++){
@@ -111,11 +115,12 @@ public class Grafo {
         MatrizAdjacencia.buildMatrizAdjacenciaGrafo(this);
         ListaDeAdjacencia.build(this);
         Definicoes def = new Definicoes();
-        this.Simples = def .simples(this);
-        this.Planar = def.planar(this);
-        this.Completo = "Não";
         generateDefinicaoFormal();
         recalculaArestasDeNós();
+        this.Simples = def .simples(this);
+        this.Planar = def.planar(this);
+        this.Completo = Definicoes.completo(this);
+        this.Conexo = Definicoes.conexo(this);
     }
     
     //Gera a definicao formal de um grafo
