@@ -108,7 +108,7 @@ public class Definicoes {
         //
         System.out.println("Menor ciclo  = " + menorCiclo);
         //Utiliza o menor ciclo na formula
-        if (menorCiclo > 4){
+        if (menorCiclo > 3){
             if (grafo.getAresta().size() <= 2*(grafo.getNo().size()) - 4){
                 return "Sim"; 
             }
