@@ -31,11 +31,13 @@ private FrameDesenhoSelecionado itemSelecionado;
     public DesenhaGrafos() {
        
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
     
     public DesenhaGrafos(ModeloTabelaGrafos modelo) {
         this.modelo = modelo;
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
     
 
@@ -59,8 +61,7 @@ private FrameDesenhoSelecionado itemSelecionado;
         menuPop.add(excluir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(204, 204, 204));
+        setTitle("Desenha Grafo");
 
         panelDesenha.setBackground(new java.awt.Color(255, 255, 255));
         panelDesenha.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,24 +107,19 @@ private FrameDesenhoSelecionado itemSelecionado;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelDesenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelDesenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelDesenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelDesenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(766, 600));
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGravarActionPerformed
-  
-     if(graficoModifica)
+
+        if(graficoModifica)
      {
         grafo.setAresta(aresta);
         grafo.setNo(no);
@@ -517,7 +513,7 @@ private FrameDesenhoSelecionado itemSelecionado;
         this.grafo = grafo;
         graficoModifica = preVisualiza ? false : true;
         if(preVisualiza)
-         panelDesenha = preview;
+        panelDesenha = preview;
         
         divisor = preVisualiza ? 2 :1;
          for(int i =0; i<grafo.getAresta().size(); i++)

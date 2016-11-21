@@ -132,6 +132,10 @@ public class UtilCaminho {
     }
     
     public  boolean verificarConexo(Grafo grafo){
+        if(grafo.getNo().size()==0)
+        {
+            return false;
+        }
         Vector<No> nos = grafo.getNo();  
         Result result = new Result();
         result = CicloPegarApenasUmResult( nos.get(0), nos.get(0), result);

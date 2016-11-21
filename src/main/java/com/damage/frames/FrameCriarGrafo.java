@@ -115,6 +115,7 @@ public class FrameCriarGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCriarGrafoDefinicaoFormalActionPerformed
 
     private void botaoCriarGrafoEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarGrafoEditorActionPerformed
+
         FrameCriarGrafoEditor.abrir(grafos);
         this.dispose();
     }//GEN-LAST:event_botaoCriarGrafoEditorActionPerformed

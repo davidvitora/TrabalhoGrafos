@@ -5,9 +5,13 @@ public class Aresta {
     private int index;
     private No no1;
     private No no2;
+    //Utilizado para percorrer os caminhos
     private boolean visitado = false;
+    //Utilizado para desenho
     private int contLaco=0;
     private int contParalelo=0;
+    //Utilizado para calculo de menor caminho
+    private int peso = 1;
     
 
         public void setContLaco(int contLaco) {
@@ -84,5 +88,13 @@ public class Aresta {
     }
     public boolean getVisitado(){
         return visitado;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
     }
 }

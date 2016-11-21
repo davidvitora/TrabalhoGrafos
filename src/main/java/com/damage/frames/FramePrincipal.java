@@ -1,10 +1,6 @@
 package com.damage.frames;
 
 import com.damage.Response.Response;
-import com.damage.frames.DesenhaGrafos;
-import com.damage.frames.FrameCriarGrafo;
-import com.damage.frames.FrameEditarGrafo;
-import com.damage.frames.PanelDesenhaGrafo;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.armazenamento.DefinicaoFormal;
 import com.damage.grafos.armazenamento.Definicoes;
@@ -38,13 +34,16 @@ public class FramePrincipal extends JFrame {
     
     
     
+    /**
+     * Creates new form FramePrincipal
+     */
     public FramePrincipal() {
         grafos = new ModeloTabelaGrafos();
         initComponents();
         TabelaGrafos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
-    
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,8 +77,8 @@ public class FramePrincipal extends JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         textoDefinicaoFormal = new javax.swing.JTextArea();
-        preview = new javax.swing.JPanel();
-        painelDesenho = new com.damage.frames.PanelDesenhaGrafo();
+        painelDesenho = new javax.swing.JPanel();
+        painelDesenho1 = new com.damage.frames.PanelDesenhaGrafo();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuGrafosNovo = new javax.swing.JMenu();
         menuNovo = new javax.swing.JMenuItem();
@@ -90,6 +89,8 @@ public class FramePrincipal extends JFrame {
         menuCriarGrafo = new javax.swing.JMenuItem();
         menuModificarGrafo = new javax.swing.JMenuItem();
         menuExcluirGrafo = new javax.swing.JMenuItem();
+        menuUtilitarios = new javax.swing.JMenu();
+        menuMenorCiclo = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenuItem();
 
@@ -132,7 +133,7 @@ public class FramePrincipal extends JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                         .addGap(2, 2, 2))
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3)
@@ -158,7 +159,7 @@ public class FramePrincipal extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -204,7 +205,7 @@ public class FramePrincipal extends JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -306,7 +307,7 @@ public class FramePrincipal extends JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                .addComponent(jScrollPane5)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -317,36 +318,37 @@ public class FramePrincipal extends JFrame {
                 .addContainerGap())
         );
 
-        preview.setBorder(javax.swing.BorderFactory.createTitledBorder("Preview"));
+        painelDesenho.setBorder(javax.swing.BorderFactory.createTitledBorder("Preview"));
 
-        painelDesenho.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        painelDesenho1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        painelDesenho1.setEnabled(false);
+
+        javax.swing.GroupLayout painelDesenho1Layout = new javax.swing.GroupLayout(painelDesenho1);
+        painelDesenho1.setLayout(painelDesenho1Layout);
+        painelDesenho1Layout.setHorizontalGroup(
+            painelDesenho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        painelDesenho1Layout.setVerticalGroup(
+            painelDesenho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout painelDesenhoLayout = new javax.swing.GroupLayout(painelDesenho);
         painelDesenho.setLayout(painelDesenhoLayout);
         painelDesenhoLayout.setHorizontalGroup(
             painelDesenhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(painelDesenhoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelDesenho1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addContainerGap())
         );
         painelDesenhoLayout.setVerticalGroup(
             painelDesenhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout previewLayout = new javax.swing.GroupLayout(preview);
-        preview.setLayout(previewLayout);
-        previewLayout.setHorizontalGroup(
-            previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(previewLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(painelDesenho, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-        previewLayout.setVerticalGroup(
-            previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, previewLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(painelDesenho, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDesenhoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelDesenho1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuGrafosNovo.setText("Arquivo");
@@ -413,6 +415,18 @@ public class FramePrincipal extends JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        menuUtilitarios.setText("Utilitários");
+
+        menuMenorCiclo.setText("Menor Ciclo");
+        menuMenorCiclo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMenorCicloActionPerformed(evt);
+            }
+        });
+        menuUtilitarios.add(menuMenorCiclo);
+
+        jMenuBar1.add(menuUtilitarios);
+
         menuAjuda.setText("Ajuda");
 
         menuSobre.setText("Sobre");
@@ -429,13 +443,13 @@ public class FramePrincipal extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painelDesenho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(preview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -451,7 +465,7 @@ public class FramePrincipal extends JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(painelDesenho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -463,7 +477,9 @@ public class FramePrincipal extends JFrame {
       Definicoes definicoes = new Definicoes();
       Grafo grafo = this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow());
       this.textoMatrizIncidencia.setText(grafo.getMatrizIncidenciaString());
-      this.textoMatrizAdjacencia.setText(grafo.getMatrizAdjacenciaString());
+
+       this.textoMatrizAdjacencia.setText(grafo.getMatrizAdjacenciaString());
+
       this.textoListadeAdjacencia.setText(grafo.getListaAdjacencia());
       this.labelInformacaoCompleto.setText(grafo.getCompleto());
       this.labelInformacaoSimples.setText(grafo.getSimples());
@@ -474,24 +490,24 @@ public class FramePrincipal extends JFrame {
       DesenhaGrafos abrirDesenho;
       abrirDesenho = new DesenhaGrafos();
       
-      if(evt.getClickCount()>1)
+       if(evt.getClickCount()>1)
       {
          abrirDesenho = new DesenhaGrafos(grafos);
          abrirDesenho.setVisible(true);
          abrirDesenho.AbrirGrafo(grafo, null,this.TabelaGrafos.getSelectedRow(),false);
          repaint();
-         this.painelDesenho.getGraphics().clearRect(0, 0, painelDesenho.getWidth(), painelDesenho.getHeight());
+         this.painelDesenho1.getGraphics().clearRect(0, 0, painelDesenho1.getWidth(), painelDesenho1.getHeight());
          resetarInformacoes();
       }
           grafo.update();
           abrirDesenho = new DesenhaGrafos();
-          painelDesenho.LimparVariaveis();
-          painelDesenho = abrirDesenho.AbrirGrafo(grafo,painelDesenho,0, true);
+          painelDesenho1.LimparVariaveis();
+
+
+
+
+          painelDesenho1 = abrirDesenho.AbrirGrafo(grafo,painelDesenho1,0, true);
           repaint();
-      
-      
-      
-      
     }//GEN-LAST:event_TabelaGrafosMouseClicked
 
     
@@ -518,12 +534,12 @@ public class FramePrincipal extends JFrame {
               if(resposta.getCode() == 400){
                  JOptionPane.showMessageDialog(null, resposta.getMessage() + "\nLinha do erro: " + contLine, "Erro ao ler definição formal", 1);
                  return;
-              } grafo.update();
-             
+              }
+              grafo.update();
               //Texto será definido como o nome do grafo
               texto = linha.substring(linha.indexOf("|") + 1,linha.lastIndexOf("|")).replace("|", "");
-              if(texto.length() < 4){
-                 JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 4 caracteres", "Erro ao ler definição formal", 1); 
+              if(texto.length() < 1){
+                 JOptionPane.showMessageDialog(null, "Problema com grafo na linha: " + contLine + "\nO nome do grafo deve ter no minimo 1 caractere", "Erro ao ler definição formal", 1); 
               }
               grafo.setNome(texto);
               //Texto será denifindo com as cordenadas dos grafos
@@ -583,7 +599,7 @@ public class FramePrincipal extends JFrame {
         int escolha = JOptionPane.showConfirmDialog(labelCompleto, "Deseja criar uma nova lista de grafos?", "Novos Grafos", 1);
         if(escolha == 0){
             grafos.setGrafos(new Vector<Grafo>());
-            jPanel1 =  new PanelDesenhaGrafo();
+			jPanel1 =  new PanelDesenhaGrafo();
             repaint();
             grafos.fireTableDataChanged();
         }
@@ -619,6 +635,14 @@ public class FramePrincipal extends JFrame {
         this.resetarInformacoes();
     }//GEN-LAST:event_menuExcluirGrafoActionPerformed
 
+    private void menuMenorCicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMenorCicloActionPerformed
+        if(this.TabelaGrafos.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(labelCompleto, "Selecione um grafo para verificar o menor ciclo");
+            return;
+        }
+        FrameMenorCaminho.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()));
+    }//GEN-LAST:event_menuMenorCicloActionPerformed
+
     
     public static void main(String args[]) {
  
@@ -649,10 +673,9 @@ public class FramePrincipal extends JFrame {
         this.textoListadeAdjacencia.setText("");
         this.textoDefinicaoFormal.setText("");
         this.textoNomeGrafo.setText("");
-        this.painelDesenho.getGraphics().clearRect(0, 0, painelDesenho.getWidth(), painelDesenho.getHeight());
+		this.painelDesenho1.getGraphics().clearRect(0, 0, painelDesenho1.getWidth(), painelDesenho1.getHeight());
     }
 
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaGrafos;
     private javax.swing.JLabel jLabel1;
@@ -687,11 +710,13 @@ public class FramePrincipal extends JFrame {
     private javax.swing.JMenuItem menuGrafoDesenhar;
     private javax.swing.JMenu menuGrafosNovo;
     private javax.swing.JMenuItem menuIGrafosSalvar;
+    private javax.swing.JMenuItem menuMenorCiclo;
     private javax.swing.JMenuItem menuModificarGrafo;
     private javax.swing.JMenuItem menuNovo;
     private javax.swing.JMenuItem menuSobre;
-    private com.damage.frames.PanelDesenhaGrafo painelDesenho;
-    private javax.swing.JPanel preview;
+    private javax.swing.JMenu menuUtilitarios;
+    private javax.swing.JPanel painelDesenho;
+    private com.damage.frames.PanelDesenhaGrafo painelDesenho1;
     private javax.swing.JTextArea textoDefinicaoFormal;
     private javax.swing.JTextArea textoListadeAdjacencia;
     private javax.swing.JTextArea textoMatrizAdjacencia;
