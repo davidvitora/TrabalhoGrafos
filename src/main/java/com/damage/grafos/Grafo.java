@@ -45,6 +45,10 @@ public class Grafo {
     
     public String getMatrizIncidenciaString(){
         String stringMatrizIncidencia = "";
+        if(this.getAresta().isEmpty()){
+             stringMatrizIncidencia = "Não é possivel contruir a Matriz de Adjacência";
+             return stringMatrizIncidencia;
+        }
         for(int i = 0; i < getNo().size(); i++){
             stringMatrizIncidencia +=  "| ";
             for(int j = 0; j < getAresta().size(); j++){
@@ -103,6 +107,7 @@ public class Grafo {
         this.definicaoFormal = definicaoFormal;
     }
     
+    //Rotina realizada sempre que a estrutura de um grafo é modificada para atualizar seus dados
     public void update(){
         this.getAresta().recalculate_index();
         this.getNo().recalculate_index();
@@ -110,12 +115,15 @@ public class Grafo {
         MatrizAdjacencia.buildMatrizAdjacenciaGrafo(this);
         ListaDeAdjacencia.build(this);
         Definicoes def = new Definicoes();
+        generateDefinicaoFormal();
+        recalculaArestasDeNós();
         this.Simples = def .simples(this);
         this.Planar = def.planar(this);
-        this.Completo = "Não";
-        generateDefinicaoFormal();
+        this.Completo = Definicoes.completo(this);
+        this.Conexo = Definicoes.conexo(this);
     }
     
+    //Gera a definicao formal de um grafo
     public void generateDefinicaoFormal(){
         String definicaoFormal = "G=({";
         for(int i = 0; i < this.no.size(); i++){
@@ -143,13 +151,33 @@ public class Grafo {
          this.definicaoFormal = definicaoFormal;
     }
     
+    //Utilizado no algoritimo de grafos planares
     public void resetaVisitas(){
-    for (int i = 0; i < no.size(); i++){
-        no.getNo(i).setVisitado(false);
+        for (int i = 0; i < no.size(); i++){
+            no.getNo(i).setVisitado(false);
+        }
+        for (int i = 0; i < aresta.size(); i++){
+            aresta.getAresta(i).setVisitado(false);
+        }    
     }
-    for (int i = 0; i < aresta.size(); i++){
-        aresta.getAresta(i).setVisitado(false);
-    }    
+    
+    //Recalcula as arestas presentes nas listas dos nós
+    public void recalculaArestasDeNós(){
+        //Limpa as arestas dos nos
+        for(int i = 0; i < no.size(); i++){
+            no.getNo(i).getArestas().clear();
+        }
+        //Coloca as arestas que pertencem a cada nó no conjunto
+        for(int i = 0; i < no.size(); i++){
+            for(int j = 0; j < aresta.size(); j++){
+                if(aresta.getAresta(j).getNo1().equals(no.getNo(i))){
+                    no.getNo(i).getArestas().add(aresta.getAresta(j));
+                }
+                if(aresta.getAresta(j).getNo2().equals(no.getNo(i))){
+                    no.getNo(i).getArestas().add(aresta.getAresta(j));
+                }
+            }
+        }
     }
 
     public String getListaAdjacencia() {

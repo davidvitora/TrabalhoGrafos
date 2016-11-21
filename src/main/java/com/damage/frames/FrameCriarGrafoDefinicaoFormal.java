@@ -6,7 +6,7 @@ import com.damage.grafos.Grafo;
 import com.damage.grafos.armazenamento.DefinicaoFormal;
 import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
-import com.damage.grafos.estruturasdedados.GeraPosicoesRamdomicas;
+import com.damage.grafos.estruturasdedados.FuncoesDesenho;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -152,14 +152,13 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
             }
             else{
                 grafo.update();
-                grafos.getGrafos().add(grafo);
                 JOptionPane.showMessageDialog(null, "Grafo criado com sucesso", "Sucesso", 1);
                 grafos.fireTableDataChanged();
                 this.dispose();
-                GeraPosicoesRamdomicas gerador = new GeraPosicoesRamdomicas();
+                FuncoesDesenho funcoes = new FuncoesDesenho();
                 for(int i =0; i<grafo.getNo().size(); i++)
                  {
-                     int x = gerador.getNumeroRamdomX(),y = gerador.getNumeroRamdomY();
+                     int x = funcoes.getNumeroRamdomX(),y = funcoes.getNumeroRamdomY();
                        for(int j =0; j<grafo.getNo().size(); j++)
                        {
                            if(x>grafo.getNo().getNo(j).getCordenadaX()-50&&x<grafo.getNo().getNo(j).getCordenadaX()+50&&y>grafo.getNo().getNo(j).getCordenadaY()-50&&y<grafo.getNo().getNo(j).getCordenadaY()+50)
@@ -169,6 +168,9 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
                      grafo.getNo().getNo(i).setCordenadaY(y);
                       
                  }
+                grafo = funcoes.verificaLaco(grafo);
+                grafos.getGrafos().add(grafo);
+                
             }
             grafo.update();
         }
