@@ -161,6 +161,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void panelDesenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDesenhaMouseClicked
+        repaint();
         
         panelDesenha.RedesenharTudo();
         boolean botaoDireito = evt.getButton()==MouseEvent.BUTTON3;
@@ -263,20 +264,21 @@ private FrameDesenhoSelecionado itemSelecionado;
                                 nome = "";
                                 return;
                            }
-                           else{
-                                for(int i = 0; i<no.size();i++)
+                           
+                            if(nome.replaceAll(" ", "").length()<1)
+                           {
+                               JOptionPane.showMessageDialog(this, "Nome invalido!", "Nome Invalido", 1);
+                           }
+                           
+                             for(int i = 0; i<no.size();i++)
                                 {
                                     if(no.getNo(i).getId().replaceAll(" ", "").equals(nome.replaceAll(" ", "")))
                                     {
                                     JOptionPane.showMessageDialog(this, "Nome Repetido!", "nome repetido", 1);
-                                    return;
+                                    nome="";
                                     }
-                                }
-                                }
-                           if(nome.replaceAll(" ", "").length()<1)
-                           {
-                               JOptionPane.showMessageDialog(this, "Nome invalido!", "Nome Invalido", 1);
-                           }
+                                }  
+                                
                        }
                        selecionadoVermelho=false;
                        no1 = new No();
@@ -295,24 +297,24 @@ private FrameDesenhoSelecionado itemSelecionado;
             VerificaDesenho();
           
        }
-         else
+       else
             {
                 selecionadoItem=false;
                 repaint();
             }
+          
              
      
     }//GEN-LAST:event_panelDesenhaMouseClicked
 
     public void excluirAresta()
     {
-         if(panelDesenha.getDesenhaArestaSel().size()!=0)
+         if(!panelDesenha.getDesenhaArestaSel().isEmpty())
             {
                 for(FrameDesenhoAresta a : panelDesenha.getDesenhaAresta())
                 {
                    if(itemSelecionado.getSelAresta().getIndex()==a.getIndex())
                    {
-                       selecionadoItem=false;
                        for(int j = 0 ; j < no.size() ; j++)
                        {
                          for(int i = 0; i< no.getNo(j).getArestas().size();i++)
@@ -323,6 +325,7 @@ private FrameDesenhoSelecionado itemSelecionado;
                               }
                           }
                        }
+                       selecionadoItem=false;
                        indexAresta--;
                        panelDesenha.limparSelecionados();
                        panelDesenha.RemoverAresta(a);
@@ -341,7 +344,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     public void excluirArestaPara()
     {
               
-            if(panelDesenha.getDesenhaArestaParaSel().size()!=0)
+            if(!panelDesenha.getDesenhaArestaParaSel().isEmpty())
             {
                         if(selecionadoItem||selecionado)
                 {
@@ -351,7 +354,6 @@ private FrameDesenhoSelecionado itemSelecionado;
                         {
                            if(itemSelecionado.getSelArestaPara().getIndex()==a.getIndex())
                            {
-                               selecionadoItem=false;
                                for(int j = 0 ; j < no.size() ; j++)
                                {
                                  for(int i = 0; i< no.getNo(j).getArestas().size();i++)
@@ -362,6 +364,7 @@ private FrameDesenhoSelecionado itemSelecionado;
                                       }
                                   }
                                }
+                               selecionadoItem=false;
                                indexAresta--;
                                panelDesenha.limparSelecionados();
                                panelDesenha.RemoverArestaPara(a);
@@ -381,7 +384,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     
     public void excluirLaco()
     {
-         if(panelDesenha.getDesenhaLacoSel().size()!=0)
+         if(!panelDesenha.getDesenhaLacoSel().isEmpty())
             {
                   if(selecionadoItem||selecionado)
                 {
@@ -391,7 +394,6 @@ private FrameDesenhoSelecionado itemSelecionado;
                         {
                            if(itemSelecionado.getSelLaco().getIndex()==a.getIndex())
                            {
-                               selecionadoItem=false;
                                for(int j = 0 ; j < no.size() ; j++)
                                {
                                  for(int i = 0; i< no.getNo(j).getArestas().size();i++)
@@ -402,6 +404,7 @@ private FrameDesenhoSelecionado itemSelecionado;
                                       }
                                   }
                                }
+                               selecionadoItem=false;
                                indexAresta--;
                                panelDesenha.limparSelecionados();
                                panelDesenha.RemoverLaco(a);
@@ -421,7 +424,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     
     public boolean excluirNo()
     {
-         if(panelDesenha.getDesenhaNoSel().size()!=0)
+         if(!panelDesenha.getDesenhaNoSel().isEmpty())
             {
               for(FrameDesenhoNo a : panelDesenha.getDesenhaVetor())
                 {
