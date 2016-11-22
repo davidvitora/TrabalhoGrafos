@@ -16,8 +16,6 @@ import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
-/*------Sabemos que esta funcinalidade não funcionar 100%, identiicamos cada erro. Infelismente o tempo
-foi nosso maior inimigo, nossas sinceras desculpas! Att: David, Gabriel, Jõao e Marlon.------*/
 
 public class DesenhaGrafos extends javax.swing.JFrame {
 private boolean selecionado = false,selecionadoItem = false, selecionadoVermelho=false, graficoModifica = false;
@@ -139,8 +137,8 @@ private FrameDesenhoSelecionado itemSelecionado;
           {
               return;
           }
-          
-      }
+      }    
+      
       grafo = new Grafo();
       grafo.setNome(nome);
       grafo.setAresta(aresta);
@@ -214,7 +212,7 @@ private FrameDesenhoSelecionado itemSelecionado;
         }
      }
          
-        
+            
        if(!selecionadoItem&&!botaoDireito)
        {
            arestaNova = new Aresta();
@@ -263,16 +261,6 @@ private FrameDesenhoSelecionado itemSelecionado;
                                 nome = "";
                                 return;
                            }
-                           else{
-                                for(int i = 0; i<no.size();i++)
-                                {
-                                    if(no.getNo(i).getId().replaceAll(" ", "").equals(nome.replaceAll(" ", "")))
-                                    {
-                                    JOptionPane.showMessageDialog(this, "Nome Repetido!", "nome repetido", 1);
-                                    return;
-                                    }
-                                }
-                                }
                            if(nome.replaceAll(" ", "").length()<1)
                            {
                                JOptionPane.showMessageDialog(this, "Nome invalido!", "Nome Invalido", 1);
@@ -288,25 +276,26 @@ private FrameDesenhoSelecionado itemSelecionado;
                        no1.setIndex(no.size());
                        no.add(no1);
                        }
-                    else
+                    else 
                         selecionado=true;
                    }
                
             VerificaDesenho();
           
        }
-         else
+       else if(getNo(evt.getX(),evt.getY())==null)
             {
                 selecionadoItem=false;
                 repaint();
             }
+       
              
      
     }//GEN-LAST:event_panelDesenhaMouseClicked
 
     public void excluirAresta()
     {
-         if(panelDesenha.getDesenhaArestaSel().size()!=0)
+         if(!panelDesenha.getDesenhaArestaSel().isEmpty())
             {
                 for(FrameDesenhoAresta a : panelDesenha.getDesenhaAresta())
                 {
@@ -341,7 +330,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     public void excluirArestaPara()
     {
               
-            if(panelDesenha.getDesenhaArestaParaSel().size()!=0)
+            if(!panelDesenha.getDesenhaArestaParaSel().isEmpty())
             {
                         if(selecionadoItem||selecionado)
                 {
@@ -381,7 +370,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     
     public void excluirLaco()
     {
-         if(panelDesenha.getDesenhaLacoSel().size()!=0)
+         if(!panelDesenha.getDesenhaLacoSel().isEmpty())
             {
                   if(selecionadoItem||selecionado)
                 {
@@ -421,7 +410,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     
     public boolean excluirNo()
     {
-         if(panelDesenha.getDesenhaNoSel().size()!=0)
+         if(!panelDesenha.getDesenhaNoSel().isEmpty())
             {
               for(FrameDesenhoNo a : panelDesenha.getDesenhaVetor())
                 {
@@ -523,7 +512,7 @@ private FrameDesenhoSelecionado itemSelecionado;
     { 
         this.indexGrafo = indexGrafo;
         this.grafo = grafo;
-        graficoModifica = preVisualiza ? false : true;
+        graficoModifica = !preVisualiza;
         if(preVisualiza)
         panelDesenha = preview;
         

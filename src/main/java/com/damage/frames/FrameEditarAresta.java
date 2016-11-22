@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.damage.frames;
 
 import com.damage.grafos.Aresta;
@@ -14,10 +10,7 @@ import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author David .V
- */
+
 public class FrameEditarAresta extends javax.swing.JFrame {
 
     Aresta aresta;

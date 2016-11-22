@@ -8,10 +8,9 @@ package com.damage.frames;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author David .V
- */
+/*------Sabemos que esta funcinalidade não funcionar 100%, identiicamos cada erro. Infelismente o tempo
+foi nosso maior inimigo, nossas sinceras desculpas! Att: David, Gabriel, Jõao e Marlon.------*/
+
 public class Inicializa extends javax.swing.JFrame {
     /**
      * Creates new form Inicializa
