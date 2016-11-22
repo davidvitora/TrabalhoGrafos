@@ -16,6 +16,8 @@ import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
+/*------Sabemos que esta funcinalidade não funcionar 100%, identiicamos cada erro. Infelismente o tempo
+foi nosso maior inimigo, nossas sinceras desculpas! Att: David, Gabriel, Jõao e Marlon.------*/
 
 public class DesenhaGrafos extends javax.swing.JFrame {
 private boolean selecionado = false,selecionadoItem = false, selecionadoVermelho=false, graficoModifica = false;
@@ -137,8 +139,8 @@ private FrameDesenhoSelecionado itemSelecionado;
           {
               return;
           }
-      }    
-      
+          
+      }
       grafo = new Grafo();
       grafo.setNome(nome);
       grafo.setAresta(aresta);
@@ -261,6 +263,16 @@ private FrameDesenhoSelecionado itemSelecionado;
                                 nome = "";
                                 return;
                            }
+                           else{
+                                for(int i = 0; i<no.size();i++)
+                                {
+                                    if(no.getNo(i).getId().replaceAll(" ", "").equals(nome.replaceAll(" ", "")))
+                                    {
+                                    JOptionPane.showMessageDialog(this, "Nome Repetido!", "nome repetido", 1);
+                                    return;
+                                    }
+                                }
+                                }
                            if(nome.replaceAll(" ", "").length()<1)
                            {
                                JOptionPane.showMessageDialog(this, "Nome invalido!", "Nome Invalido", 1);

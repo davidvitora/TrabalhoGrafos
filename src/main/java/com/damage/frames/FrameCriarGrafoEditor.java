@@ -1,23 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.damage.frames;
 
 import com.damage.grafos.Grafo;
 import com.damage.grafos.No;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.grafos.estruturasdedados.FuncoesDesenho;
+import com.damage.grafos.estruturasdedados.GeraPosicoesRamdomicas;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author David .V
- */
 public class FrameCriarGrafoEditor extends javax.swing.JFrame {
 
     private Grafo grafo = new Grafo();
@@ -42,28 +35,27 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tabelaNos1 = new javax.swing.JTable();
-        botaoCriarNo1 = new javax.swing.JButton();
-        botaoEditarNo1 = new javax.swing.JButton();
-        botaoExcluirNo1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaNos = new javax.swing.JTable();
+        botaoCriarNo = new javax.swing.JButton();
+        botaoEditarNo = new javax.swing.JButton();
+        botaoExcluirNo = new javax.swing.JButton();
         labelNome = new javax.swing.JLabel();
         textoNome = new javax.swing.JTextField();
-        botaoCriarGrafo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaArestas = new javax.swing.JTable();
         botaoCriarAresta = new javax.swing.JButton();
         botaoEditarAresta = new javax.swing.JButton();
         botaoExcluirAresta = new javax.swing.JButton();
+        botaoCriarGrafo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Nós"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nós"));
 
-        tabelaNos1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaNos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -85,75 +77,67 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         this.tabelaNos.setModel(new ModeloTabelaNo(grafo.getNo()));
         this.tabelaNos.getColumnModel().getColumn(0).setHeaderValue("Id");
 
-        jScrollPane3.setViewportView(tabelaNos1);
+        jScrollPane1.setViewportView(tabelaNos);
 
-        botaoCriarNo1.setText("Criar");
-        botaoCriarNo1.addActionListener(new java.awt.event.ActionListener() {
+        botaoCriarNo.setText("Criar");
+        botaoCriarNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCriarNoActionPerformed(evt);
             }
         });
 
-        botaoEditarNo1.setText("Editar");
-        botaoEditarNo1.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditarNo.setText("Editar");
+        botaoEditarNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEditarNoActionPerformed(evt);
             }
         });
 
-        botaoExcluirNo1.setText("Excluir");
-        botaoExcluirNo1.addActionListener(new java.awt.event.ActionListener() {
+        botaoExcluirNo.setText("Excluir");
+        botaoExcluirNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoExcluirNoActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoCriarNo1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoEditarNo1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoExcluirNo1)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCriarNo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoEditarNo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoExcluirNo)))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(botaoCriarNo1)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(botaoCriarNo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoEditarNo1)
+                .addComponent(botaoEditarNo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoExcluirNo1)
-                .addGap(0, 193, Short.MAX_VALUE))
+                .addComponent(botaoExcluirNo)
+                .addGap(0, 201, Short.MAX_VALUE))
         );
 
         labelNome.setText("Nome");
-
-        botaoCriarGrafo.setText("Criar Grafo");
-        botaoCriarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCriarGrafoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(labelNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 201, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(botaoCriarGrafo))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,15 +145,9 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
                     .addComponent(textoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(botaoCriarGrafo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Arestas"));
@@ -235,14 +213,24 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(botaoCriarAresta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoEditarAresta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoExcluirAresta))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(botaoCriarAresta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoEditarAresta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoExcluirAresta)))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
+
+        botaoCriarGrafo.setText("Criar Grafo");
+        botaoCriarGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCriarGrafoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,7 +239,9 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoCriarGrafo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -265,11 +255,50 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(botaoCriarGrafo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarGrafoActionPerformed
+        if(this.textoNome.getText().length() < 1){
+            JOptionPane.showMessageDialog(null, "Insira um nome de no minimo 1 caractere para o grafo", "Insira um nome", 1);
+        }else if(this.grafo.getNo().size() < 1){
+            JOptionPane.showMessageDialog(null, "Crie pelo menos um nó para o grafo", "Crie um nó", 1);
+        }
+        else{
+            grafo.update();
+            grafo.setNome(this.textoNome.getText());
+            grafos.getGrafos().add(grafo);
+            grafos.fireTableDataChanged();
+            JOptionPane.showMessageDialog(null, "Grafo criado comsucesso", "Sucesso", 1);
+            this.dispose();
+            FuncoesDesenho funcoes = new FuncoesDesenho();
+            GeraPosicoesRamdomicas gerador = new GeraPosicoesRamdomicas();
+            for(int i =0; i<grafo.getNo().size(); i++)
+             {
+                 int x = gerador.getNumeroRamdomX(),y = gerador.getNumeroRamdomY();
+                   for(int j =0; j<grafo.getNo().size(); j++)
+                   {
+                       if(x>grafo.getNo().getNo(j).getCordenadaX()-50&&x<grafo.getNo().getNo(j).getCordenadaX()+50&&y>grafo.getNo().getNo(j).getCordenadaY()-50&&y<grafo.getNo().getNo(j).getCordenadaY()+50)
+                          i--;
+                   }
+                 grafo.getNo().getNo(i).setCordenadaX(x);
+                 grafo.getNo().getNo(i).setCordenadaY(y);
+                 grafo = funcoes.verificaLaco(grafo);
+
+             }
+        }
+    }//GEN-LAST:event_botaoCriarGrafoActionPerformed
+
+    private void botaoCriarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarNoActionPerformed
+        FrameCriarNo.abrir((ModeloTabelaNo) tabelaNos.getModel());
+    }//GEN-LAST:event_botaoCriarNoActionPerformed
 
     private void botaoCriarArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarArestaActionPerformed
         if(this.tabelaNos.getModel().getRowCount() < 1){
@@ -281,6 +310,24 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botaoCriarArestaActionPerformed
 
+    private void botaoExcluirNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirNoActionPerformed
+        ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
+        ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
+        if(this.tabelaNos.getSelectedRow() == -1){
+             JOptionPane.showMessageDialog(null, "Selecione um nó para realizar a Exclusão", "Selecione o nó", 1);
+            return;
+        }
+        
+        if(modeloAresta.getArestas().possuiAresta(this.grafo.getNo().getNo(this.tabelaNos.getSelectedRow()))){
+            JOptionPane.showMessageDialog(null, "O nó selecionado está sendo utilizado em arestas\nRealize a exclusão da aresta para prosseguir", "Exclua a aresta", 1);
+            return;
+        }
+        
+        this.grafo.getNo().remove(this.tabelaNos.getSelectedRow());
+        this.grafos.fireTableDataChanged();
+        modeloNo.fireTableDataChanged();
+    }//GEN-LAST:event_botaoExcluirNoActionPerformed
+
     private void botaoExcluirArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirArestaActionPerformed
         ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
         if(this.tabelaArestas.getSelectedRow() == -1){
@@ -291,6 +338,16 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         modeloAresta.fireTableDataChanged();
     }//GEN-LAST:event_botaoExcluirArestaActionPerformed
 
+    private void botaoEditarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarNoActionPerformed
+        ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
+        ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
+        if(this.tabelaNos.getSelectedRow() == -1){
+             JOptionPane.showMessageDialog(null, "Selecione um no para realizar a edição", "Selecione um nó", 1);
+            return;
+        }
+        FrameEditarNo.abrir(modeloNo, modeloAresta ,modeloNo.getNos().getNo(tabelaNos.getSelectedRow()));
+    }//GEN-LAST:event_botaoEditarNoActionPerformed
+
     private void botaoEditarArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarArestaActionPerformed
         ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
         ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
@@ -300,69 +357,6 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
         }
         FrameEditarAresta.abrir(modeloAresta, modeloAresta.getArestas().getAresta(tabelaArestas.getSelectedRow()) ,modeloNo);
     }//GEN-LAST:event_botaoEditarArestaActionPerformed
-
-    private void botaoCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarGrafoActionPerformed
-        if(this.textoNome.getText().length() < 1){
-            JOptionPane.showMessageDialog(null, "Insira um nome de no minimo 1 caractere para o grafo", "Insira um nome", 1);
-        }else if(this.grafo.getNo().size() < 1){
-            JOptionPane.showMessageDialog(null, "Crie pelo menos um nó para o grafo", "Crie um nó", 1);
-        }
-        else{
-            grafo.update();
-            grafo.setNome(this.textoNome.getText());
-            grafos.fireTableDataChanged();
-            JOptionPane.showMessageDialog(null, "Grafo criado comsucesso", "Sucesso", 1);
-            this.dispose();
-            FuncoesDesenho funcoes = new FuncoesDesenho();
-            for(int i =0; i<grafo.getNo().size(); i++)
-            {
-                int x = funcoes.getNumeroRamdomX(),y = funcoes.getNumeroRamdomY();
-                for(int j =0; j<grafo.getNo().size(); j++)
-                {
-                    if(x>grafo.getNo().getNo(j).getCordenadaX()-50&&x<grafo.getNo().getNo(j).getCordenadaX()+50&&y>grafo.getNo().getNo(j).getCordenadaY()-50&&y<grafo.getNo().getNo(j).getCordenadaY()+50)
-                    i--;
-                }
-                grafo.getNo().getNo(i).setCordenadaX(x);
-                grafo.getNo().getNo(i).setCordenadaY(y);
-
-            }
-            grafo = funcoes.verificaLaco(grafo);
-            grafos.getGrafos().add(grafo);
-        }
-        grafo.update();
-    }//GEN-LAST:event_botaoCriarGrafoActionPerformed
-
-    private void botaoExcluirNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirNoActionPerformed
-        ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
-        ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
-        if(this.tabelaNos.getSelectedRow() == -1){
-            JOptionPane.showMessageDialog(null, "Selecione um nó para realizar a Exclusão", "Selecione o nó", 1);
-            return;
-        }
-
-        if(modeloAresta.getArestas().possuiAresta(this.grafo.getNo().getNo(this.tabelaNos.getSelectedRow()))){
-            JOptionPane.showMessageDialog(null, "O nó selecionado está sendo utilizado em arestas\nRealize a exclusão da aresta para prosseguir", "Exclua a aresta", 1);
-            return;
-        }
-
-        this.grafo.getNo().remove(this.tabelaNos.getSelectedRow());
-        this.grafos.fireTableDataChanged();
-        modeloNo.fireTableDataChanged();
-    }//GEN-LAST:event_botaoExcluirNoActionPerformed
-
-    private void botaoEditarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarNoActionPerformed
-        ModeloTabelaNo modeloNo = (ModeloTabelaNo) this.tabelaNos.getModel();
-        ModeloTabelaAresta modeloAresta = (ModeloTabelaAresta) this.tabelaArestas.getModel();
-        if(this.tabelaNos.getSelectedRow() == -1){
-            JOptionPane.showMessageDialog(null, "Selecione um no para realizar a edição", "Selecione um nó", 1);
-            return;
-        }
-        FrameEditarNo.abrir(modeloNo, modeloAresta ,modeloNo.getNos().getNo(tabelaNos.getSelectedRow()));
-    }//GEN-LAST:event_botaoEditarNoActionPerformed
-
-    private void botaoCriarNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCriarNoActionPerformed
-        FrameCriarNo.abrir((ModeloTabelaNo) tabelaNos.getModel());
-    }//GEN-LAST:event_botaoCriarNoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,24 +402,18 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
     private javax.swing.JButton botaoCriarAresta;
     private javax.swing.JButton botaoCriarGrafo;
     private javax.swing.JButton botaoCriarNo;
-    private javax.swing.JButton botaoCriarNo1;
     private javax.swing.JButton botaoEditarAresta;
     private javax.swing.JButton botaoEditarNo;
-    private javax.swing.JButton botaoEditarNo1;
     private javax.swing.JButton botaoExcluirAresta;
     private javax.swing.JButton botaoExcluirNo;
-    private javax.swing.JButton botaoExcluirNo1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelNome;
     private javax.swing.JTable tabelaArestas;
     private javax.swing.JTable tabelaNos;
-    private javax.swing.JTable tabelaNos1;
     private javax.swing.JTextField textoNome;
     // End of variables declaration//GEN-END:variables
 
