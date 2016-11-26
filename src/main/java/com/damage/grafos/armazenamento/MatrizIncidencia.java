@@ -22,25 +22,18 @@ public class MatrizIncidencia {
             return response;
         }
         matrizI = new int[grafo.getNo().size()][grafo.getAresta().size()];
-        for(int i = 0; i < grafo.getNo().size(); i++){
-            
-            for(int j = 0;j < grafo.getAresta().size(); j++){
-                matrizI[i][j] = 0;
-            }
-            
-        }
         
-        for(int j = 0; j < grafo.getAresta().size(); j++){
-            aresta = (Aresta) grafo.getAresta().get(j);
-            matrizI[aresta.getNo1().getIndex()][j] += 1;
+        for(int i = 0; i < grafo.getAresta().size(); i++){
+            aresta = grafo.getAresta().getAresta(i);
+            matrizI[aresta.getNo1().getIndex()][i] += 1;
             if(aresta.getNo1().getIndex() == aresta.getNo2().getIndex()){
                 continue;
             }
-            matrizI[aresta.getNo2().getIndex()][j] += 1;
+            matrizI[aresta.getNo2().getIndex()][i] += 1;
         }
         
         response.setCode(200);
-        response.setMessage("Matriz de incidencia criada com sucesso");
+        response.setMessage("Matriz de incidência criada com sucesso");
         grafo.setMatrizI(matrizI);
         return response;
     }

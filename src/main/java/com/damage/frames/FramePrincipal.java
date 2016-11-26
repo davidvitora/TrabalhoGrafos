@@ -7,8 +7,11 @@ import com.damage.grafos.armazenamento.Definicoes;
 import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
+import com.damage.util.MudarIcone;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,10 +19,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -40,6 +45,7 @@ public class FramePrincipal extends JFrame {
         initComponents();
         TabelaGrafos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        MudarIcone.mudarIcone(this);
     }
   
     @SuppressWarnings("unchecked")
@@ -83,9 +89,13 @@ public class FramePrincipal extends JFrame {
         menuAbrirGrafos = new javax.swing.JMenuItem();
         menuIGrafosSalvar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menuGrafoDesenhar = new javax.swing.JMenuItem();
-        menuCriarGrafo = new javax.swing.JMenuItem();
-        menuModificarGrafo = new javax.swing.JMenuItem();
+        criarMenu = new javax.swing.JMenu();
+        menuCriarGrafoModelador = new javax.swing.JMenuItem();
+        menuCriarEditor = new javax.swing.JMenuItem();
+        menuCriarDefinicaoFormal = new javax.swing.JMenuItem();
+        modificaoMenu = new javax.swing.JMenu();
+        menuModificarModelador = new javax.swing.JMenuItem();
+        menuModificarEditor = new javax.swing.JMenuItem();
         menuExcluirGrafo = new javax.swing.JMenuItem();
         menuUtilitarios = new javax.swing.JMenu();
         menuMenorCiclo = new javax.swing.JMenuItem();
@@ -95,7 +105,7 @@ public class FramePrincipal extends JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Forker");
+        setTitle("Forker 0.2");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(50, 50));
         setName("framePrincipal"); // NOI18N
@@ -349,6 +359,8 @@ public class FramePrincipal extends JFrame {
                 .addContainerGap())
         );
 
+        jMenuBar1.setToolTipText("");
+
         menuGrafosNovo.setText("Arquivo");
 
         menuNovo.setText("Novo");
@@ -379,29 +391,53 @@ public class FramePrincipal extends JFrame {
 
         jMenu2.setText("Grafo");
 
-        menuGrafoDesenhar.setText("Desenhar Novo");
-        menuGrafoDesenhar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGrafoDesenharActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menuGrafoDesenhar);
+        criarMenu.setText("Criar");
 
-        menuCriarGrafo.setText("Criar Grafo");
-        menuCriarGrafo.addActionListener(new java.awt.event.ActionListener() {
+        menuCriarGrafoModelador.setText("Modelador");
+        menuCriarGrafoModelador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCriarGrafoActionPerformed(evt);
+                menuCriarGrafoModeladorActionPerformed(evt);
             }
         });
-        jMenu2.add(menuCriarGrafo);
+        criarMenu.add(menuCriarGrafoModelador);
 
-        menuModificarGrafo.setText("Modificar Grafo");
-        menuModificarGrafo.addActionListener(new java.awt.event.ActionListener() {
+        menuCriarEditor.setText("Editor");
+        menuCriarEditor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuModificarGrafoActionPerformed(evt);
+                menuCriarEditorActionPerformed(evt);
             }
         });
-        jMenu2.add(menuModificarGrafo);
+        criarMenu.add(menuCriarEditor);
+
+        menuCriarDefinicaoFormal.setText("Definição Formal");
+        menuCriarDefinicaoFormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCriarDefinicaoFormalActionPerformed(evt);
+            }
+        });
+        criarMenu.add(menuCriarDefinicaoFormal);
+
+        jMenu2.add(criarMenu);
+
+        modificaoMenu.setText("Modificar");
+
+        menuModificarModelador.setText("Modelador");
+        menuModificarModelador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuModificarModeladorActionPerformed(evt);
+            }
+        });
+        modificaoMenu.add(menuModificarModelador);
+
+        menuModificarEditor.setText("Editor");
+        menuModificarEditor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuModificarEditorActionPerformed(evt);
+            }
+        });
+        modificaoMenu.add(menuModificarEditor);
+
+        jMenu2.add(modificaoMenu);
 
         menuExcluirGrafo.setText("Excluir Grafo");
         menuExcluirGrafo.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +451,7 @@ public class FramePrincipal extends JFrame {
 
         menuUtilitarios.setText("Utilitários");
 
-        menuMenorCiclo.setText("Menor Ciclo");
+        menuMenorCiclo.setText("Ciclos");
         menuMenorCiclo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuMenorCicloActionPerformed(evt);
@@ -428,6 +464,11 @@ public class FramePrincipal extends JFrame {
         menuAjuda.setText("Ajuda");
 
         menuSobre.setText("Sobre");
+        menuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSobreActionPerformed(evt);
+            }
+        });
         menuAjuda.add(menuSobre);
 
         jMenuBar1.add(menuAjuda);
@@ -606,17 +647,13 @@ public class FramePrincipal extends JFrame {
         
     }                                                 
 
-    private void menuCriarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCriarGrafoActionPerformed
-        FrameCriarGrafo.abrir(grafos);
-    }//GEN-LAST:event_menuCriarGrafoActionPerformed
-
-    private void menuModificarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModificarGrafoActionPerformed
+    private void menuModificarEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModificarEditorActionPerformed
          if(this.TabelaGrafos.getSelectedRow() == -1){
             JOptionPane.showMessageDialog(labelCompleto, "Selecione um grafo para Editar");
             return;
         }
         FrameEditarGrafo.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()), grafos);
-    }//GEN-LAST:event_menuModificarGrafoActionPerformed
+    }//GEN-LAST:event_menuModificarEditorActionPerformed
 
 
     private void menuExcluirGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExcluirGrafoActionPerformed
@@ -634,8 +671,40 @@ public class FramePrincipal extends JFrame {
             JOptionPane.showMessageDialog(labelCompleto, "Selecione um grafo para verificar o menor ciclo");
             return;
         }
-        FrameMenorCaminho.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()));
+        FrameCiclos.abrir(grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow()));
     }//GEN-LAST:event_menuMenorCicloActionPerformed
+
+    private void menuCriarEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCriarEditorActionPerformed
+        FrameCriarGrafoEditor.abrir(grafos);
+    }//GEN-LAST:event_menuCriarEditorActionPerformed
+
+    private void menuCriarDefinicaoFormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCriarDefinicaoFormalActionPerformed
+        FrameCriarGrafoDefinicaoFormal.abrir(grafos);
+    }//GEN-LAST:event_menuCriarDefinicaoFormalActionPerformed
+
+    private void menuCriarGrafoModeladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCriarGrafoModeladorActionPerformed
+        DesenhaGrafos.abrir(grafos);
+    }//GEN-LAST:event_menuCriarGrafoModeladorActionPerformed
+
+    private void menuModificarModeladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModificarModeladorActionPerformed
+        if(this.TabelaGrafos.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(labelCompleto, "Selecione um grafo para editar");
+            return;
+        }
+        Definicoes definicoes = new Definicoes();
+        Grafo grafo = this.grafos.getGrafos().get(this.TabelaGrafos.getSelectedRow());
+        DesenhaGrafos abrirDesenho;
+        abrirDesenho = new DesenhaGrafos();
+        resetarInformacoes();
+        abrirDesenho = new DesenhaGrafos(grafos);
+        abrirDesenho.setVisible(true);
+        abrirDesenho.AbrirGrafo(grafo, null,this.TabelaGrafos.getSelectedRow(),false);
+        repaint(); 
+    }//GEN-LAST:event_menuModificarModeladorActionPerformed
+
+    private void menuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobreActionPerformed
+        FrameSobre.abrir();
+    }//GEN-LAST:event_menuSobreActionPerformed
 
     
     public static void main(String args[]) {
@@ -660,10 +729,10 @@ public class FramePrincipal extends JFrame {
     public void resetarInformacoes(){
         this.textoMatrizAdjacencia.setText("");
         this.textoMatrizIncidencia.setText("");
-        this.labelInformacaoCompleto.setText("Não");
-        this.labelInformacaoConexo.setText("Não");
-        this.labelInformacaoSimples.setText("Não");
-        this.labelInformacaoPlanar.setText("Não");
+        this.labelInformacaoCompleto.setText("");
+        this.labelInformacaoConexo.setText("");
+        this.labelInformacaoSimples.setText("");
+        this.labelInformacaoPlanar.setText("");
         this.textoListadeAdjacencia.setText("");
         this.textoDefinicaoFormal.setText("");
         this.textoNomeGrafo.setText("");
@@ -673,6 +742,7 @@ public class FramePrincipal extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaGrafos;
+    private javax.swing.JMenu criarMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -700,16 +770,19 @@ public class FramePrincipal extends JFrame {
     private javax.swing.JLabel labelSimples;
     private javax.swing.JMenuItem menuAbrirGrafos;
     private javax.swing.JMenu menuAjuda;
-    private javax.swing.JMenuItem menuCriarGrafo;
+    private javax.swing.JMenuItem menuCriarDefinicaoFormal;
+    private javax.swing.JMenuItem menuCriarEditor;
+    private javax.swing.JMenuItem menuCriarGrafoModelador;
     private javax.swing.JMenuItem menuExcluirGrafo;
-    private javax.swing.JMenuItem menuGrafoDesenhar;
     private javax.swing.JMenu menuGrafosNovo;
     private javax.swing.JMenuItem menuIGrafosSalvar;
     private javax.swing.JMenuItem menuMenorCiclo;
-    private javax.swing.JMenuItem menuModificarGrafo;
+    private javax.swing.JMenuItem menuModificarEditor;
+    private javax.swing.JMenuItem menuModificarModelador;
     private javax.swing.JMenuItem menuNovo;
     private javax.swing.JMenuItem menuSobre;
     private javax.swing.JMenu menuUtilitarios;
+    private javax.swing.JMenu modificaoMenu;
     private com.damage.frames.PanelDesenhaGrafo painelDesenho;
     private javax.swing.JPanel preview;
     private javax.swing.JTextArea textoDefinicaoFormal;

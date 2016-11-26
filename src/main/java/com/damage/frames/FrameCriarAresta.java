@@ -8,6 +8,7 @@ import com.damage.grafos.estruturasdedados.VectorNo;
 import com.damage.modeloTabelaGrafos.ComboBoxNo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import com.damage.util.MudarIcone;
 import javax.swing.JOptionPane;
 
 
@@ -19,12 +20,14 @@ public class FrameCriarAresta extends javax.swing.JFrame {
     
     public FrameCriarAresta() {
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
     
     public FrameCriarAresta(ModeloTabelaAresta arestas, ModeloTabelaNo nos) {
         this.arestas = arestas;
         this.nos = nos;
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
 
 

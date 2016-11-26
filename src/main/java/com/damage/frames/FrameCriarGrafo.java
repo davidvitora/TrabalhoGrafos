@@ -3,6 +3,7 @@ package com.damage.frames;
 
 import com.damage.grafos.Grafo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
+import com.damage.util.MudarIcone;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +22,13 @@ public class FrameCriarGrafo extends javax.swing.JFrame {
     public FrameCriarGrafo(ModeloTabelaGrafos grafos) {
         this.grafos = grafos;
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
     
     public FrameCriarGrafo() {
         grafos = new ModeloTabelaGrafos();
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
 
     /**

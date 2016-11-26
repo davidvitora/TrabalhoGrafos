@@ -7,6 +7,7 @@ import com.damage.frames.formas.FrameDesenhoLaco;
 import com.damage.frames.formas.FrameDesenhoNo;
 import com.damage.frames.formas.FrameDesenhoNome;
 import com.damage.frames.formas.FrameDesenhoSelecionado;
+import com.damage.util.MudarIcone;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.util.ArrayList;

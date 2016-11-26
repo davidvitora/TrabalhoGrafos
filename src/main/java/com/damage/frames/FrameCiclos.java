@@ -4,20 +4,25 @@ package com.damage.frames;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.armazenamento.UtilCaminho;
 import com.damage.modeloTabelaGrafos.ModeloTabelaArestaPeso;
+import com.damage.util.MudarIcone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
-public class FrameMenorCaminho extends javax.swing.JFrame {
+public class FrameCiclos extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameMenorCaminho
      */
     Grafo grafo;
-    public FrameMenorCaminho() {
+    public FrameCiclos() {
+        MudarIcone.mudarIcone(this);
         initComponents();
     }
     
-    public FrameMenorCaminho(Grafo grafo) {
+    public FrameCiclos(Grafo grafo) {
+        MudarIcone.mudarIcone(this);
         this.grafo = grafo;
         initComponents();
     }
@@ -150,26 +155,29 @@ public class FrameMenorCaminho extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameMenorCaminho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameCiclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameMenorCaminho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameCiclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameMenorCaminho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameCiclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameMenorCaminho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameCiclos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameMenorCaminho().setVisible(true);
+                new FrameCiclos().setVisible(true);
             }
         });
     }
     
     public static void abrir(Grafo grafo){
-        new FrameMenorCaminho(grafo).setVisible(true);
+        new FrameCiclos(grafo).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

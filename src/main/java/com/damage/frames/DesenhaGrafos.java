@@ -13,6 +13,7 @@ import com.damage.grafos.No;
 import com.damage.grafos.estruturasdedados.VectorAresta;
 import com.damage.grafos.estruturasdedados.VectorNo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
+import com.damage.util.MudarIcone;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
@@ -31,12 +32,13 @@ private Grafo grafo;
 private FrameDesenhoSelecionado itemSelecionado;
 
     public DesenhaGrafos() {
-       
+       MudarIcone.mudarIcone(this);
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
     }
     
     public DesenhaGrafos(ModeloTabelaGrafos modelo) {
+        MudarIcone.mudarIcone(this);
         this.modelo = modelo;
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);

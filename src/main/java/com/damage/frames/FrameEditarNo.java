@@ -5,6 +5,7 @@ import com.damage.grafos.No;
 import com.damage.grafos.estruturasdedados.VectorNo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import com.damage.util.MudarIcone;
 import javax.swing.JOptionPane;
 
 
@@ -19,6 +20,7 @@ public class FrameEditarNo extends javax.swing.JFrame {
         this.no = no;
         this.setNos(nos);
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
     
     public FrameEditarNo() {

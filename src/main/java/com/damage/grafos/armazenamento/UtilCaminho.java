@@ -8,7 +8,6 @@ package com.damage.grafos.armazenamento;
 import com.damage.grafos.Aresta;
 import com.damage.grafos.Grafo;
 import com.damage.grafos.No;
-import com.damage.util.ContMaster;
 import com.damage.util.Result;
 import com.damage.util.ResultMaster;
 import java.util.Vector;

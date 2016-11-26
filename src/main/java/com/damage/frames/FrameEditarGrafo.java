@@ -8,6 +8,7 @@ import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import com.damage.util.MudarIcone;
 import javax.swing.JOptionPane;
 
 
@@ -24,6 +25,7 @@ public class FrameEditarGrafo extends javax.swing.JFrame {
         this.grafo = grafo;
         this.grafos = grafos;
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
 
     /**

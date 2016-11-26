@@ -8,6 +8,9 @@
       </Properties>
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuGrafosNovo">
           <Properties>
@@ -45,30 +48,60 @@
             <Property name="text" type="java.lang.String" value="Grafo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuGrafoDesenhar">
+            <Menu class="javax.swing.JMenu" name="criarMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Desenhar Novo"/>
+                <Property name="text" type="java.lang.String" value="Criar"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuGrafoDesenharActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuCriarGrafo">
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="menuCriarGrafoModelador">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Modelador"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCriarGrafoModeladorActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuCriarEditor">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Editor"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCriarEditorActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuCriarDefinicaoFormal">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Defini&#xe7;&#xe3;o Formal"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCriarDefinicaoFormalActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="modificaoMenu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Criar Grafo"/>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCriarGrafoActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuModificarGrafo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar Grafo"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuModificarGrafoActionPerformed"/>
-              </Events>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="menuModificarModelador">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Modelador"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuModificarModeladorActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuModificarEditor">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Editor"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuModificarEditorActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="menuExcluirGrafo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Excluir Grafo"/>
@@ -86,7 +119,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuMenorCiclo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Menor Ciclo"/>
+                <Property name="text" type="java.lang.String" value="Ciclos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuMenorCicloActionPerformed"/>
@@ -103,6 +136,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSobreActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -111,7 +147,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Forker"/>
+    <Property name="title" type="java.lang.String" value="Forker 0.2"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Cursor Padr&#xe3;o"/>
     </Property>

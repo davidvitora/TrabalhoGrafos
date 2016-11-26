@@ -8,6 +8,7 @@ import com.damage.grafos.armazenamento.ListaDeAdjacencia;
 import com.damage.grafos.armazenamento.MatrizIncidencia;
 import com.damage.grafos.estruturasdedados.FuncoesDesenho;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
+import com.damage.util.MudarIcone;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -21,6 +22,7 @@ public class FrameCriarGrafoDefinicaoFormal extends javax.swing.JFrame {
     public FrameCriarGrafoDefinicaoFormal(ModeloTabelaGrafos grafos) {
         this.grafos = grafos;
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
 
     /**

@@ -9,6 +9,7 @@ import com.damage.grafos.estruturasdedados.GeraPosicoesRamdomicas;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaGrafos;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import com.damage.util.MudarIcone;
 import javax.swing.JOptionPane;
 
 public class FrameCriarGrafoEditor extends javax.swing.JFrame {
@@ -23,6 +24,7 @@ public class FrameCriarGrafoEditor extends javax.swing.JFrame {
     public FrameCriarGrafoEditor(ModeloTabelaGrafos grafos) {
         this.grafos = grafos;
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
 
     /**

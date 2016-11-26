@@ -4,6 +4,7 @@ package com.damage.frames;
 import com.damage.grafos.No;
 import com.damage.grafos.estruturasdedados.VectorNo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import com.damage.util.MudarIcone;
 import javax.swing.JOptionPane;
 
 
@@ -15,6 +16,7 @@ public class FrameCriarNo extends javax.swing.JFrame {
     public FrameCriarNo(ModeloTabelaNo nos) {
         this.setNos(nos);
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
     
     public FrameCriarNo() {

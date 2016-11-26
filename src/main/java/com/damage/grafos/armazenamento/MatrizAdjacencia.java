@@ -24,7 +24,8 @@ public class MatrizAdjacencia {
         
         for(int i =0;i<grafo.getAresta().size();i++)
         {
-            aresta = (Aresta) grafo.getAresta().get(i);
+            aresta = grafo.getAresta().getAresta(i);
+            
             for(int j =0; j<grafo.getNo().size();j++)
             {
                 if(grafo.getNo().getNo(j)==aresta.getNo1())

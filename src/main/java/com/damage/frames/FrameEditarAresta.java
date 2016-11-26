@@ -8,6 +8,7 @@ import com.damage.grafos.estruturasdedados.VectorNo;
 import com.damage.modeloTabelaGrafos.ComboBoxNo;
 import com.damage.modeloTabelaGrafos.ModeloTabelaAresta;
 import com.damage.modeloTabelaGrafos.ModeloTabelaNo;
+import com.damage.util.MudarIcone;
 import javax.swing.JOptionPane;
 
 
@@ -26,6 +27,7 @@ public class FrameEditarAresta extends javax.swing.JFrame {
         this.arestas = arestas;
         this.nos = nos;
         initComponents();
+        MudarIcone.mudarIcone(this);
     }
 
 

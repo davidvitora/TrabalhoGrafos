@@ -15,25 +15,32 @@ import com.damage.grafos.No;
  */
 public class ListaDeAdjacencia {
     
+    //Algoritomo para criar a lista de adjacencia, como parâmetro o grafo é enviado para a função
     public static void build(Grafo grafo){
         String listaAdjacencia = "";
         No no;
         Aresta aresta;
+        //Percorrerá todos os nós do grafo
         for(int i = 0; i < grafo.getNo().size(); i++){
             no = grafo.getNo().getNo(i);
             listaAdjacencia += "|" + no.getId() + "|";
-            for(int j = 0; j < grafo.getAresta().size(); j++){
-                aresta = grafo.getAresta().getAresta(j);
+            //percorrá todas as arestas do nó atual
+            for(int j = 0; j < no.getArestas().size(); j++){
+                aresta = no.getArestas().getAresta(j);
+                //Caso o no1 da aresta seja o nó atual, será colocada na lista o nó 2
                 if(aresta.getNo1().equals(no)){
                     listaAdjacencia += " -> |";
                     listaAdjacencia += aresta.getNo2().getId() + "|";
-                }else if(aresta.getNo2().equals(no)){
+                }
+                //Caso o no2 da aresta seja o nó atual, será colocada na lista o nó1
+                else if(aresta.getNo2().equals(no)){
                     listaAdjacencia += " -> |";
                     listaAdjacencia += aresta.getNo1().getId() + "|";
                 }
             }
             listaAdjacencia += "\n\n";
         }
+        //O texto de lista de adjacencia do grafo será definido como o criado com o algoritimo
         grafo.setListaAdjacencia(listaAdjacencia);
     }
     
